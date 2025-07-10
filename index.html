@@ -105,18 +105,30 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="relative h-screen w-full text-white flex items-center justify-center text-center">
-        <div id="hero-carousel" class="absolute inset-0">
-            <!-- Recommendation: Replace placeholders with optimized .webp images for production -->
-            <div class="hero-slide absolute inset-0 opacity-100" style="background-image: url('https://placehold.co/1920x1080/005f73/FFFFFF?text=Moda+Infantil');"></div>
-            <div class="hero-slide absolute inset-0 opacity-0" style="background-image: url('https://placehold.co/1920x1080/94d2bd/FFFFFF?text=Estilo+Juvenil');"></div>
-            <div class="hero-slide absolute inset-0 opacity-0" style="background-image: url('https://placehold.co/1920x1080/e9d8a6/FFFFFF?text=Calzado+de+Calidad');"></div>
-            <div class="hero-slide absolute inset-0 opacity-0" style="background-image: url('https://placehold.co/1920x1080/ee9b00/FFFFFF?text=Tendencia+Adultos');"></div>
+    <section id="home" class="relative h-screen w-full text-white overflow-hidden">
+        <!-- Layer 1: Background Images -->
+        <div id="hero-carousel" class="absolute inset-0 z-0">
+            <div class="hero-slide absolute inset-0 opacity-100" style="background-color: #005f73;"></div>
+            <div class="hero-slide absolute inset-0 opacity-0" style="background-color: #94d2bd;"></div>
+            <div class="hero-slide absolute inset-0 opacity-0" style="background-color: #e9d8a6;"></div>
+            <div class="hero-slide absolute inset-0 opacity-0" style="background-color: #ee9b00;"></div>
         </div>
-        <div class="absolute inset-0 bg-black/50"></div>
-        <div class="relative z-10 p-6">
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 shadow-text">Más de 5 años conectando marcas de Brasil</h1>
-            <p class="text-xl md:text-2xl font-light shadow-text">con tiendas de todo Chile</p>
+        <!-- Layer 2: Dark Overlay -->
+        <div class="absolute inset-0 bg-black/50 z-10"></div>
+
+        <!-- Layer 4: Main Slogan (Centered) -->
+        <div class="relative z-30 flex flex-col justify-center h-full text-center p-6">
+            <div>
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 shadow-text">Más de 5 años conectando marcas de Brasil</h1>
+                <p class="text-xl md:text-2xl font-light shadow-text">con tiendas de todo Chile</p>
+            </div>
+        </div>
+
+        <!-- Layer 3: Rotating Text (Behind slogan, positioned lower) -->
+        <div class="absolute inset-x-0 bottom-10 md:bottom-12 z-20 text-center pointer-events-none">
+            <div id="rotating-text-container" class="text-5xl md:text-7xl font-bold text-white/20 transition-opacity duration-500 ease-in-out">
+                <!-- Text will be inserted here by JS -->
+            </div>
         </div>
     </section>
 
@@ -416,6 +428,23 @@
             }, 5000);
         }
 
+        // Rotating Text in Hero
+        const rotatingTextContainer = document.getElementById('rotating-text-container');
+        const rotatingTexts = ["Moda Infantil", "Estilo Juvenil", "Calzado de Calidad", "Tendencia Adultos"];
+        let currentTextIndex = 0;
+
+        if (rotatingTextContainer) {
+            rotatingTextContainer.textContent = rotatingTexts[0];
+            setInterval(() => {
+                rotatingTextContainer.classList.add('opacity-0');
+                setTimeout(() => {
+                    currentTextIndex = (currentTextIndex + 1) % rotatingTexts.length;
+                    rotatingTextContainer.textContent = rotatingTexts[currentTextIndex];
+                    rotatingTextContainer.classList.remove('opacity-0');
+                }, 500);
+            }, 5000);
+        }
+
         // Brand Card WhatsApp Link
         const brandCards = document.querySelectorAll('.brand-card');
         const phoneNumber = '56900000000'; // Placeholder - REMEMBER TO CHANGE THIS
@@ -468,7 +497,7 @@
         window.onscroll = function() {
             if (window.scrollY > 50) {
                 header.classList.add('py-2');
-                header.classList.remove('py-3');
+                header.classList.remove('py-2');
             } else {
                 header.classList.add('py-3');
                 header.classList.remove('py-2');
