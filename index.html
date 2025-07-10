@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Érase Una Vez - Distribuidor Exclusivo de Marcas Brasileñas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        .hero-slide {
+            background-size: cover;
+            background-position: center;
+            transition: opacity 1s ease-in-out;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .brand-card {
+            background-color: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        .brand-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            border-color: #0a9396;
+        }
+        .brand-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #005f73;
+            margin-bottom: 0.75rem;
+        }
+        .brand-desc {
+            font-size: 0.9rem;
+            color: #4b5563;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header id="header" class="bg-white/80 backdrop-blur-lg shadow-md fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#home">
+                <img src="https://storage.googleapis.com/garden-prod/upload/Erase%20una%20vez%20-%20Logo.png" alt="Logo Érase Una Vez" class="h-12 md:h-16">
+            </a>
+            <div class="hidden lg:flex space-x-6 items-center text-sm font-medium">
+                <a href="#quienes-somos" class="text-gray-600 hover:text-[#4a6b7b] transition-colors">Quiénes Somos</a>
+                <a href="#beneficios" class="text-gray-600 hover:text-[#4a6b7b] transition-colors">Beneficios</a>
+                <a href="#marcas" class="text-gray-600 hover:text-[#4a6b7b] transition-colors">Nuestras Marcas</a>
+                <a href="#proceso" class="text-gray-600 hover:text-[#4a6b7b] transition-colors">Cómo Trabajamos</a>
+                <a href="#historia" class="text-gray-600 hover:text-[#4a6b7b] transition-colors">Historia</a>
+                <a href="#faq" class="text-gray-600 hover:text-[#4a6b7b] transition-colors">FAQ</a>
+                <a href="#contacto" class="bg-[#005f73] text-white px-4 py-2 rounded-full hover:bg-[#0a9396] transition-all duration-300">Contacto</a>
+            </div>
+            <div class="lg:hidden">
+                <button id="menu-btn" class="text-gray-700 focus:outline-none">
+                    <i data-lucide="menu" class="h-6 w-6"></i>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white/95 backdrop-blur-lg">
+            <a href="#quienes-somos" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Quiénes Somos</a>
+            <a href="#beneficios" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Beneficios</a>
+            <a href="#marcas" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Nuestras Marcas</a>
+            <a href="#proceso" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Cómo Trabajamos</a>
+            <a href="#historia" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Historia</a>
+            <a href="#faq" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">FAQ</a>
+            <a href="#contacto" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Contacto</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen w-full text-white flex items-center justify-center text-center">
+        <div id="hero-carousel" class="absolute inset-0">
+            <div class="hero-slide absolute inset-0 opacity-100" style="background-image: url('https://placehold.co/1920x1080/005f73/FFFFFF?text=Moda+Infantil');"></div>
+            <div class="hero-slide absolute inset-0 opacity-0" style="background-image: url('https://placehold.co/1920x1080/94d2bd/FFFFFF?text=Estilo+Juvenil');"></div>
+            <div class="hero-slide absolute inset-0 opacity-0" style="background-image: url('https://placehold.co/1920x1080/e9d8a6/FFFFFF?text=Calzado+de+Calidad');"></div>
+            <div class="hero-slide absolute inset-0 opacity-0" style="background-image: url('https://placehold.co/1920x1080/ee9b00/FFFFFF?text=Tendencia+Adultos');"></div>
+        </div>
+        <div class="absolute inset-0 bg-black/50"></div>
+        <div class="relative z-10 p-6">
+            <img src="https://storage.googleapis.com/garden-prod/upload/Erase%20una%20vez%20-%20Logo.png" alt="Logo Érase Una Vez" class="h-24 md:h-32 mx-auto mb-6">
+            <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 shadow-text">Más de 5 años conectando marcas de Brasil</h1>
+            <p class="text-xl md:text-2xl font-light shadow-text">con tiendas de todo Chile</p>
+        </div>
+    </section>
+
+    <main>
+        <!-- Quienes Somos -->
+        <section id="quienes-somos" class="py-20 md:py-28 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-[#005f73] mb-6">Quiénes Somos</h2>
+                <p class="max-w-3xl mx-auto text-gray-600 leading-relaxed mb-8">
+                    En Érase Una Vez, somos distribuidores exclusivos en Chile de las mejores marcas seleccionadas de Brasil. Con más de 5 años de experiencia en el mercado, trabajamos con una variedad de marcas y accesorios brasileños, cuidadosamente seleccionados para potenciar boutiques medianas y pequeñas. Nos enfocamos en ofrecer productos de alta calidad con márgenes de venta atractivos, y brindamos asesoramiento personalizado en todo el proceso de compra y distribución. Nuestro compromiso es ayudarte a hacer crecer tu negocio con productos únicos que destacan por su diseño, calidad y funcionalidad.
+                </p>
+                <a href="https://wa.me/56900000000?text=Hola%2C%20quisiera%20solicitar%20las%20tablas%20de%20precio%20y%20cat%C3%A1logos." target="_blank" class="inline-flex items-center gap-2 bg-[#25D366] text-white font-bold px-8 py-3 rounded-full hover:bg-[#128C7E] transition-all duration-300 transform hover:scale-105">
+                    <i data-lucide="shopping-bag"></i>
+                    Solicita tablas de precio y catálogos aquí
+                </a>
+            </div>
+        </section>
+
+        <!-- Por Que Comprar con Nosotros -->
+        <section id="beneficios" class="py-20 md:py-28 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-[#005f73] mb-12">¿Por Qué Comprar con Nosotros?</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-white p-8 rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="inline-block bg-[#94d2bd]/20 text-[#0a9396] p-4 rounded-full mb-4">
+                            <i data-lucide="camera" class="h-8 w-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Soporte de Marketing</h3>
+                        <p class="text-gray-600 text-sm">Te proporcionamos todo el material digital y audiovisual necesario para potenciar tu web y redes sociales.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="inline-block bg-[#e9d8a6]/30 text-[#ee9b00] p-4 rounded-full mb-4">
+                            <i data-lucide="store" class="h-8 w-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Material POP</h3>
+                        <p class="text-gray-600 text-sm">Te apoyamos con material punto de venta (POP) para destacar nuestros productos en tu espacio físico.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="inline-block bg-[#ee9b00]/20 text-[#ca6702] p-4 rounded-full mb-4">
+                           <i data-lucide="trending-up" class="h-8 w-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Rentabilidad Garantizada</h3>
+                        <p class="text-gray-600 text-sm">Nuestros productos están seleccionados para ofrecerte un excelente margen de venta y asegurar tu rentabilidad.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="inline-block bg-[#005f73]/20 text-[#001219] p-4 rounded-full mb-4">
+                            <i data-lucide="shield-check" class="h-8 w-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Respaldo y Calidad</h3>
+                        <p class="text-gray-600 text-sm">Más de 5 años de experiencia y fábricas reconocidas que garantizan productos de la más alta calidad.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nuestras Marcas -->
+        <section id="marcas" class="py-20 md:py-28 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-[#005f73] mb-12">Nuestras Marcas</h2>
+                
+                <!-- Categorías -->
+                <div class="mb-12">
+                    <h3 class="text-2xl md:text-3xl font-bold text-center text-gray-700 mb-2">INFANTIL</h3>
+                    <p class="text-center text-gray-500">GRUPO TEXPA & GRUPO CRISTINA</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                    <!-- Marcas Infantiles -->
+                    <div class="brand-card" data-brand="Luc.boo">
+                        <h4 class="brand-name">Luc.boo</h4>
+                        <p class="brand-desc">Moda masculina infantil y de bebé, con estilo contemporáneo y minimalista. Prendas cómodas y modernas para niños de 0 a 10 años.</p>
+                    </div>
+                    <div class="brand-card" data-brand="Kukiê">
+                        <h4 class="brand-name">Kukiê</h4>
+                        <p class="brand-desc">Para niñas que adoran jugar y crear combinaciones llenas de color. Tallas de 0 meses a 14 años, con confort y exclusividad.</p>
+                    </div>
+                    <div class="brand-card" data-brand="Up Baby">
+                        <h4 class="brand-name">Up Baby</h4>
+                        <p class="brand-desc">Acompañando generaciones desde la maternidad. Prendas con estilo, confort y calidad para niños y bebés, de prematuro a 12 años.</p>
+                    </div>
+                    <div class="brand-card" data-brand="Quimby">
+                        <h4 class="brand-name">Quimby</h4>
+                        <p class="brand-desc">Ropa cómoda y práctica para el día a día de niños y niñas. Fomenta el mundo lúdico de la infancia, de 0 a 14 años.</p>
+                    </div>
+                    <div class="brand-card" data-brand="Bee Loop">
+                        <h4 class="brand-name">Bee Loop</h4>
+                        <p class="brand-desc">Moda infantil y juvenil cómoda y práctica. Permite a los niños explorar y jugar de forma libre, de 0 a 14 años.</p>
+                    </div>
+                </div>
+
+                <div class="mb-12">
+                    <h3 class="text-2xl md:text-3xl font-bold text-center text-gray-700 mb-2">JUVENIL</h3>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                    <!-- Marcas Juveniles -->
+                     <div class="brand-card" data-brand="Lilimoon">
+                        <h4 class="brand-name">Lilimoon</h4>
+                        <p class="brand-desc">Para niñas modernas y soñadoras. Colecciones versátiles y estilosas que van del tamaño 8 al 18 para expresar su personalidad.</p>
+                    </div>
+                     <div class="brand-card" data-brand="Vick & Vicky">
+                        <h4 class="brand-name">Vick & Vicky</h4>
+                        <p class="brand-desc">Moda juvenil para niñas exigentes. Prendas sofisticadas con detalles modernos y urbanos, tallas del 8 al 20.</p>
+                    </div>
+                     <div class="brand-card" data-brand="Johnny Fox">
+                        <h4 class="brand-name">Johnny Fox</h4>
+                        <p class="brand-desc">Ropa y accesorios con estilo moderno y práctico. Inspirada en el universo urbano, combina confort y durabilidad.</p>
+                    </div>
+                </div>
+
+                <div class="mb-12">
+                    <h3 class="text-2xl md:text-3xl font-bold text-center text-gray-700 mb-2">ADULTOS</h3>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                    <!-- Marcas Adultos -->
+                    <div class="brand-card" data-brand="Vida Marinha">
+                        <h4 class="brand-name">Vida Marinha</h4>
+                        <p class="brand-desc">Fusión de surfwear y moda familiar. Prendas cómodas y modernas para todas las edades con compromiso de sostenibilidad.</p>
+                    </div>
+                    <div class="brand-card" data-brand="2Rios Lenceria">
+                        <h4 class="brand-name">2Rios Lenceria</h4>
+                        <p class="brand-desc">Belleza, confort y sofisticación para la mujer moderna. Piezas básicas, románticas y atrevidas con tejidos de alta tecnología.</p>
+                    </div>
+                    <div class="brand-card" data-brand="Olho Fatal">
+                        <h4 class="brand-name">Olho Fatal</h4>
+                        <p class="brand-desc">Diseño moderno y calidad impecable. Prendas versátiles con estampas exclusivas y cortes contemporáneos para la mujer brasileña.</p>
+                    </div>
+                </div>
+
+                <div class="mb-12">
+                    <h3 class="text-2xl md:text-3xl font-bold text-center text-gray-700 mb-2">CALZADO</h3>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Marcas Calzado -->
+                    <div class="brand-card" data-brand="Baby Gut">
+                        <h4 class="brand-name">Baby Gut</h4>
+                        <p class="brand-desc">Calzado infantil con foco en comodidad y estilo. Materiales suaves y resistentes para acompañar los primeros pasos.</p>
+                    </div>
+                    <div class="brand-card" data-brand="Klin">
+                        <h4 class="brand-name">Klin</h4>
+                        <p class="brand-desc">Más de 40 años creando calzados infantiles anatómicos. Sello "Caminar Saludable" que combina confort, diseño y calidad.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Como Trabajamos -->
+        <section id="proceso" class="py-20 md:py-28 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-[#005f73] mb-12">Cómo Funciona Nuestro Proceso Mayorista</h2>
+                <div class="max-w-4xl mx-auto">
+                    <div class="relative">
+                        <!-- Línea de tiempo vertical -->
+                        <div class="absolute left-1/2 -translate-x-1/2 h-full w-0.5 bg-[#94d2bd] hidden md:block"></div>
+                        
+                        <!-- Pasos -->
+                        <div class="timeline-item mb-12 flex md:items-center w-full flex-col md:flex-row">
+                            <div class="w-full md:w-1/2 flex md:justify-end">
+                                <div class="text-left md:text-right md:pr-8">
+                                    <h3 class="font-bold text-xl text-gray-800">1. Explora Colecciones</h3>
+                                    <p class="text-gray-600 mt-1">Solicita catálogos y tablas de pedido para ver precios y detalles de cada marca.</p>
+                                </div>
+                            </div>
+                            <div class="relative w-10 h-10 bg-[#0a9396] rounded-full flex items-center justify-center text-white z-10 my-4 md:my-0">
+                                <i data-lucide="search"></i>
+                            </div>
+                            <div class="w-1/2"></div>
+                        </div>
+
+                        <div class="timeline-item mb-12 flex md:items-center w-full flex-col md:flex-row">
+                            <div class="w-full md:w-1/2 order-3 md:order-1"></div>
+                             <div class="relative w-10 h-10 bg-[#0a9396] rounded-full flex items-center justify-center text-white z-10 my-4 md:my-0 order-2">
+                                <i data-lucide="shopping-cart"></i>
+                            </div>
+                            <div class="w-full md:w-1/2 flex md:justify-start order-1 md:order-3">
+                                <div class="text-left md:pl-8">
+                                    <h3 class="font-bold text-xl text-gray-800">2. Realiza Tu Pedido</h3>
+                                    <p class="text-gray-600 mt-1">Arma tu pedido (mínimo $500.000 + IVA). Nuestro equipo te orientará.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item mb-12 flex md:items-center w-full flex-col md:flex-row">
+                            <div class="w-full md:w-1/2 flex md:justify-end">
+                                <div class="text-left md:text-right md:pr-8">
+                                    <h3 class="font-bold text-xl text-gray-800">3. Pago Flexible</h3>
+                                    <p class="text-gray-600 mt-1">Dividimos el pago en cuotas. El total debe estar pagado una semana antes de la llegada.</p>
+                                </div>
+                            </div>
+                             <div class="relative w-10 h-10 bg-[#0a9396] rounded-full flex items-center justify-center text-white z-10 my-4 md:my-0">
+                                <i data-lucide="credit-card"></i>
+                            </div>
+                            <div class="w-1/2"></div>
+                        </div>
+
+                        <div class="timeline-item mb-12 flex md:items-center w-full flex-col md:flex-row">
+                            <div class="w-full md:w-1/2 order-3 md:order-1"></div>
+                             <div class="relative w-10 h-10 bg-[#0a9396] rounded-full flex items-center justify-center text-white z-10 my-4 md:my-0 order-2">
+                                <i data-lucide="truck"></i>
+                            </div>
+                            <div class="w-full md:w-1/2 flex md:justify-start order-1 md:order-3">
+                                <div class="text-left md:pl-8">
+                                    <h3 class="font-bold text-xl text-gray-800">4. Recepción y Entrega</h3>
+                                    <p class="text-gray-600 mt-1">Retira en nuestra bodega en Santiago o te lo enviamos (costo de envío por parte del comprador).</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item flex md:items-center w-full flex-col md:flex-row">
+                            <div class="w-full md:w-1/2 flex md:justify-end">
+                                <div class="text-left md:text-right md:pr-8">
+                                    <h3 class="font-bold text-xl text-gray-800">5. Documentación Completa</h3>
+                                    <p class="text-gray-600 mt-1">Recibirás tu factura y guía de despacho, asegurando total transparencia.</p>
+                                </div>
+                            </div>
+                             <div class="relative w-10 h-10 bg-[#0a9396] rounded-full flex items-center justify-center text-white z-10 my-4 md:my-0">
+                                <i data-lucide="file-text"></i>
+                            </div>
+                            <div class="w-1/2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nuestra Historia -->
+        <section id="historia" class="py-20 md:py-28 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold text-[#005f73] mb-6">Nuestra Historia</h2>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-4">De Viajar por el Mundo al Mundo Textil</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            Nuestra aventura comenzó mucho antes de Érase Una Vez, explorando el mundo como tripulantes de cabina. Sin embargo, fue la llegada de nuestros hijos lo que transformó nuestro rumbo. Como nuevos padres, nos dimos cuenta de la necesidad de encontrar productos de calidad superior para ellos. Esta búsqueda nos llevó a descubrir el fascinante mundo textil, y así nació Érase Una Vez.
+                        </p>
+                        <p class="text-gray-600 leading-relaxed mb-6">
+                            A lo largo de los años, hemos expandido cuidadosamente nuestro portafolio, incorporando nuevas marcas en cada colección. Para nosotros, la calidad no es negociable, especialmente en la moda infantil. Nuestros productos pasan por los más rigurosos controles de calidad, y sí, nuestros propios hijos son nuestros primeros y más exigentes probadores. Esto nos permite afirmar con total convicción y experiencia propia que nuestros productos son de la más alta calidad.
+                        </p>
+                        <p class="text-gray-600 font-semibold italic">— Marco Boero, CEO Érase Una Vez</p>
+                    </div>
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-lg">
+                        <h2 class="text-3xl md:text-4xl font-bold text-[#005f73] mb-6">Noticias y Proyecciones</h2>
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-700 mb-2">Colección Alto Verano 2026: ¡Nuestra Más Grande!</h3>
+                                <p class="text-gray-600">Tras nuestro reciente viaje a Brasil, estamos orgullosos de presentar la colección Alto Verano 2026. ¡Es la más extensa y variada que hemos tenido! Agradecemos la confianza de estas grandes empresas que nos permiten traer lo mejor a Chile.</p>
+                            </div>
+                             <div>
+                                <h3 class="text-xl font-semibold text-gray-700 mb-2">Expectativas Prometedoras para el Verano 2026</h3>
+                                <p class="text-gray-600">Las proyecciones para la temporada son muy alentadoras. Según la CNC, se proyecta un crecimiento en el sector minorista, lo que genera un escenario optimista para el consumo en vestuario y accesorios. ¡Estamos preparados!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonios -->
+        <section id="testimonios" class="py-20 md:py-28 bg-gray-100">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-[#005f73] mb-6">Qué Dicen Nuestros Clientes</h2>
+                 <div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
+                    <p class="text-2xl text-gray-400 font-semibold italic">"RESEÑAS DE TIENDAS"</p>
+                    <p class="mt-4 text-gray-500">(TE LAS ENVIARE PRONTO)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="py-20 md:py-28 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-[#005f73] mb-12">¿Tienes Preguntas? Tenemos Respuestas</h2>
+                <div id="faq-accordion" class="max-w-3xl mx-auto space-y-4">
+                    <!-- FAQ Item 1 -->
+                    <div class="faq-item border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-question w-full flex justify-between items-center text-left p-5 font-semibold text-gray-700 hover:bg-gray-50">
+                            <span>¿Cómo funciona el proceso de compra al por mayor?</span>
+                            <i data-lucide="chevron-down" class="transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer px-5 text-gray-600">
+                            <p class="py-4">Nuestro proceso es sencillo: contacta a nuestro equipo por WhatsApp o correo electrónico para acceder a nuestros catálogos digitales estacionales (Primavera-Verano e Invierno). Una vez que hagas tu selección, coordinamos tu pedido y el despacho según la fecha de llegada de la mercadería desde Brasil.</p>
+                        </div>
+                    </div>
+                     <!-- FAQ Item 2 -->
+                    <div class="faq-item border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-question w-full flex justify-between items-center text-left p-5 font-semibold text-gray-700 hover:bg-gray-50">
+                            <span>¿En qué moneda debo realizar el pago?</span>
+                            <i data-lucide="chevron-down" class="transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer px-5 text-gray-600">
+                            <p class="py-4">El pago se realiza en pesos chilenos (CLP). El monto final de tu factura, que está expresado en dólares estadounidenses (USD) por las marcas brasileñas, se convierte a pesos chilenos al tipo de cambio del día en que efectúas el pago final.</p>
+                        </div>
+                    </div>
+                     <!-- FAQ Item 3 -->
+                    <div class="faq-item border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-question w-full flex justify-between items-center text-left p-5 font-semibold text-gray-700 hover:bg-gray-50">
+                            <span>¿Los precios de los catálogos incluyen impuestos?</span>
+                            <i data-lucide="chevron-down" class="transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer px-5 text-gray-600">
+                            <p class="py-4">No, los precios indicados en nuestras tablas y catálogos son sin IVA (Impuesto al Valor Agregado). El IVA se agregará al valor total de tu pedido al momento de la facturación.</p>
+                        </div>
+                    </div>
+                     <!-- FAQ Item 4 -->
+                    <div class="faq-item border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-question w-full flex justify-between items-center text-left p-5 font-semibold text-gray-700 hover:bg-gray-50">
+                            <span>¿Cuál es el monto mínimo para un pedido mayorista?</span>
+                            <i data-lucide="chevron-down" class="transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer px-5 text-gray-600">
+                            <p class="py-4">El pedido mínimo para ventas al por mayor es de $500.000 (quinientos mil pesos chilenos) + IVA. Ofrecemos opciones de pago flexibles para facilitar tu compra.</p>
+                        </div>
+                    </div>
+                     <!-- FAQ Item 5 -->
+                    <div class="faq-item border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-question w-full flex justify-between items-center text-left p-5 font-semibold text-gray-700 hover:bg-gray-50">
+                            <span>¿El valor de la compra incluye el flete desde Brasil a Chile?</span>
+                            <i data-lucide="chevron-down" class="transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer px-5 text-gray-600">
+                            <p class="py-4">Sí, el valor de tu pedido incluye el flete y la internación de la mercadería hasta nuestra bodega en Santiago. Cualquier traslado o costo de envío desde nuestra bodega en Santiago hacia tu ubicación final en otras regiones o comunas de Chile corre por cuenta del comprador.</p>
+                        </div>
+                    </div>
+                     <!-- FAQ Item 6 -->
+                    <div class="faq-item border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-question w-full flex justify-between items-center text-left p-5 font-semibold text-gray-700 hover:bg-gray-50">
+                            <span>¿Qué tipo de marcas representan?</span>
+                            <i data-lucide="chevron-down" class="transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer px-5 text-gray-600">
+                            <p class="py-4">Representamos de forma exclusiva una amplia gama de marcas brasileñas, reconocidas por su calidad y diseño. Contamos con líneas de ropa, calzado y accesorios para bebés, niños, jóvenes y adultos, abarcando diversos estilos desde casual, urbano, deportivo hasta lencería y moda de playa.</p>
+                        </div>
+                    </div>
+                     <!-- FAQ Item 7 -->
+                    <div class="faq-item border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-question w-full flex justify-between items-center text-left p-5 font-semibold text-gray-700 hover:bg-gray-50">
+                            <span>¿Cómo puedo ver los catálogos de temporada?</span>
+                            <i data-lucide="chevron-down" class="transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer px-5 text-gray-600">
+                            <p class="py-4">Puedes acceder a nuestros catálogos digitales de Primavera-Verano e Invierno contactándonos directamente por WhatsApp Business o a través de nuestro correo electrónico. Te enviaremos los catálogos actualizados con las últimas colecciones y precios.</p>
+                        </div>
+                    </div>
+                     <!-- FAQ Item 8 -->
+                    <div class="faq-item border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-question w-full flex justify-between items-center text-left p-5 font-semibold text-gray-700 hover:bg-gray-50">
+                            <span>¿Ofrecen opciones de pago flexibles?</span>
+                            <i data-lucide="chevron-down" class="transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer px-5 text-gray-600">
+                            <p class="py-4">Sí, entendemos las necesidades de nuestros clientes mayoristas y ofrecemos opciones de pago flexibles que se adaptan a tu negocio. Contáctanos para conocer los detalles y las alternativas disponibles.</p>
+                        </div>
+                    </div>
+                     <!-- FAQ Item 9 -->
+                    <div class="faq-item border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-question w-full flex justify-between items-center text-left p-5 font-semibold text-gray-700 hover:bg-gray-50">
+                            <span>¿Realizan envíos a todo Chile?</span>
+                            <i data-lucide="chevron-down" class="transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer px-5 text-gray-600">
+                            <p class="py-4">Sí, realizamos envíos a todo el territorio chileno, incluyendo regiones extremas y comunas pequeñas. Queremos que nuestros productos lleguen a cada rincón del país.</p>
+                        </div>
+                    </div>
+                     <!-- FAQ Item 10 -->
+                    <div class="faq-item border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-question w-full flex justify-between items-center text-left p-5 font-semibold text-gray-700 hover:bg-gray-50">
+                            <span>¿Cuál es el tiempo de entrega de los pedidos?</span>
+                            <i data-lucide="chevron-down" class="transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer px-5 text-gray-600">
+                            <p class="py-4">El tiempo de entrega depende de la fecha de llegada de la mercadería desde Brasil y de tu ubicación en Chile. Te proporcionaremos una fecha estimada de entrega al momento de confirmar tu pedido.</p>
+                        </div>
+                    </div>
+                     <!-- FAQ Item 11 -->
+                    <div class="faq-item border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-question w-full flex justify-between items-center text-left p-5 font-semibold text-gray-700 hover:bg-gray-50">
+                            <span>¿Cómo puedo contactarlos para realizar un pedido o hacer consultas?</span>
+                            <i data-lucide="chevron-down" class="transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer px-5 text-gray-600">
+                            <p class="py-4">La forma más rápida de contactarnos es a través de nuestro WhatsApp Business. También puedes escribirnos a nuestro correo electrónico o seguirnos en Instagram @eraseunavezcl para mantenerte al día con nuestras novedades.</p>
+                        </div>
+                    </div>
+                     <!-- FAQ Item 12 -->
+                    <div class="faq-item border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-question w-full flex justify-between items-center text-left p-5 font-semibold text-gray-700 hover:bg-gray-50">
+                            <span>¿Me entregan factura por mi compra?</span>
+                            <i data-lucide="chevron-down" class="transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer px-5 text-gray-600">
+                            <p class="py-4">Sí, todas nuestras compras incluyen el envío de la factura correspondiente y la orden de compra detallada.</p>
+                        </div>
+                    </div>
+                     <!-- FAQ Item 13 -->
+                    <div class="faq-item border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-question w-full flex justify-between items-center text-left p-5 font-semibold text-gray-700 hover:bg-gray-50">
+                            <span>¿Le venden a más de una tienda por región?</span>
+                            <i data-lucide="chevron-down" class="transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer px-5 text-gray-600">
+                            <p class="py-4">Analizamos cada caso de forma individual para evitar la competencia directa entre tiendas cercanas que ofrezcan nuestros productos. Si bien no ofrecemos exclusividad por región, nos esforzamos por mantener un equilibrio justo y beneficioso para todos nuestros clientes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacto -->
+        <section id="contacto" class="py-20 md:py-28 bg-gray-100">
+            <div class="container mx-auto px-6 text-center">
+                 <h2 class="text-3xl md:text-4xl font-bold text-[#005f73] mb-8">Contacto</h2>
+                 <div class="flex flex-col md:flex-row justify-center items-center gap-8">
+                    <div class="flex items-center gap-3 text-lg">
+                        <i data-lucide="mail" class="text-[#0a9396]"></i>
+                        <a href="mailto:contacto@eraseunavez.cl" class="text-gray-700 hover:text-[#005f73]">contacto@eraseunavez.cl</a>
+                    </div>
+                     <div class="flex items-center gap-3 text-lg">
+                        <i data-lucide="phone" class="text-[#0a9396]"></i>
+                        <span class="text-gray-700">(Número por definir)</span>
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#001219] text-white">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid md:grid-cols-3 gap-8 text-center md:text-left">
+                <div>
+                    <img src="https://storage.googleapis.com/garden-prod/upload/Erase%20una%20vez%20-%20Logo.png" alt="Logo Érase Una Vez" class="h-16 mx-auto md:mx-0 mb-4">
+                    <p class="text-sm text-gray-400">Distribuidor Exclusivo de Marcas Brasileñas en Chile</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Navegación</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#quienes-somos" class="text-gray-300 hover:text-white">Quiénes Somos</a></li>
+                        <li><a href="#marcas" class="text-gray-300 hover:text-white">Nuestras Marcas</a></li>
+                        <li><a href="#proceso" class="text-gray-300 hover:text-white">Cómo Trabajamos</a></li>
+                        <li><a href="#faq" class="text-gray-300 hover:text-white">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Contacto</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-center justify-center md:justify-start gap-2">
+                            <i data-lucide="phone" class="h-4 w-4"></i>
+                            <a href="https://wa.me/56900000000" target="_blank" class="text-gray-300 hover:text-white">+56 9 XXXX XXXX</a>
+                        </li>
+                         <li class="flex items-center justify-center md:justify-start gap-2">
+                            <i data-lucide="instagram" class="h-4 w-4"></i>
+                            <a href="https://instagram.com/eraseunavezcl" target="_blank" class="text-gray-300 hover:text-white">@eraseunavezcl</a>
+                        </li>
+                         <li class="flex items-center justify-center md:justify-start gap-2">
+                            <i data-lucide="mail" class="h-4 w-4"></i>
+                            <a href="mailto:contacto@eraseunavez.cl" class="text-gray-300 hover:text-white">contacto@eraseunavez.cl</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-gray-700 text-center text-xs text-gray-500">
+                <p>© 2025 Érase Una Vez. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Hero Section Carousel
+        const slides = document.querySelectorAll('.hero-slide');
+        let currentSlide = 0;
+        if (slides.length > 0) {
+            setInterval(() => {
+                slides[currentSlide].classList.remove('opacity-100');
+                slides[currentSlide].classList.add('opacity-0');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.remove('opacity-0');
+                slides[currentSlide].classList.add('opacity-100');
+            }, 5000);
+        }
+
+        // Brand Card WhatsApp Link
+        const brandCards = document.querySelectorAll('.brand-card');
+        const phoneNumber = '56900000000'; // Placeholder - REMEMBER TO CHANGE THIS
+        brandCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const brandName = card.dataset.brand;
+                const message = encodeURIComponent(`Hola! Me interesó comprar de la línea ${brandName}`);
+                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+                window.open(whatsappUrl, '_blank');
+            });
+        });
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+            const icon = question.querySelector('i');
+
+            question.addEventListener('click', () => {
+                const isOpening = !answer.style.maxHeight || answer.style.maxHeight === '0px';
+
+                // Close all other open answers
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        const otherAnswer = otherItem.querySelector('.faq-answer');
+                        const otherIcon = otherItem.querySelector('.faq-question i');
+                        otherAnswer.style.maxHeight = null;
+                        otherIcon.classList.remove('rotate-180');
+                    }
+                });
+                
+                // Toggle the clicked item
+                if (isOpening) {
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                    icon.classList.add('rotate-180');
+                } else {
+                    answer.style.maxHeight = null;
+                    icon.classList.remove('rotate-180');
+                }
+            });
+        });
+
+        // Adjust header padding on scroll
+        const header = document.getElementById('header');
+        window.onscroll = function() {
+            if (window.scrollY > 50) {
+                header.classList.add('py-2');
+                header.classList.remove('py-3');
+            } else {
+                header.classList.add('py-3');
+                header.classList.remove('py-2');
+            }
+        };
+    });
+    </script>
+</body>
+</html>
