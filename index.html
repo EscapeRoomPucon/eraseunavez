@@ -67,27 +67,6 @@
             outline-offset: 2px;
             border-radius: 0.25rem;
         }
-        .news-content {
-            max-height: 100px; /* Adjust this value to show more or less initial text */
-            overflow: hidden;
-            position: relative;
-            transition: max-height 0.7s ease-in-out;
-        }
-        .news-content.expanded {
-            max-height: 1000px; /* A large value to ensure all content is visible */
-        }
-        .news-content::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 30px;
-            background: linear-gradient(to top, white, transparent);
-        }
-        .news-content.expanded::after {
-            display: none;
-        }
         
         /* Testimonial Scroller */
         @keyframes scroll {
