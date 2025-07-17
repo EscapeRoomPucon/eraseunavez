@@ -39,10 +39,12 @@
             background-color: #f8fafc;
             border: 1px solid #e5e7eb;
             border-radius: 0.75rem;
-            padding: 2rem;
             text-align: center;
             transition: all 0.3s ease-in-out;
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
         }
         .brand-card:hover {
             transform: translateY(-5px) scale(1.02);
@@ -67,6 +69,36 @@
             outline-offset: 2px;
             border-radius: 0.25rem;
         }
+        .news-content {
+            max-height: 100px; /* Adjust this value to show more or less initial text */
+            overflow: hidden;
+            position: relative;
+            transition: max-height 0.7s ease-in-out;
+        }
+        .news-content.expanded {
+            max-height: 1000px; /* A large value to ensure all content is visible */
+        }
+        .news-content::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: linear-gradient(to top, white, transparent);
+        }
+        .news-content.expanded::after {
+            display: none;
+        }
+        
+        /* Testimonial Scroller */
+        @keyframes scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+        .scroller {
+            animation: scroll 40s linear infinite; /* Adjusted speed */
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -75,7 +107,7 @@
     <header id="header" class="bg-white/80 backdrop-blur-lg shadow-md fixed top-0 left-0 right-0 z-50 transition-all duration-300">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
             <a href="#home">
-                <img src="Erase una vez - Logo.png" alt="Logo Érase Una Vez" class="h-12 md:h-16">
+                <img src="images/Erase una vez - Logo.png" alt="Logo Érase Una Vez" class="h-12 md:h-16">
             </a>
             <div class="hidden lg:flex space-x-6 items-center text-sm font-medium">
                 <a href="#quienes-somos" class="text-gray-600 hover:text-[#4a6b7b] transition-colors">Quiénes Somos</a>
@@ -83,6 +115,8 @@
                 <a href="#marcas" class="text-gray-600 hover:text-[#4a6b7b] transition-colors">Nuestras Marcas</a>
                 <a href="#proceso" class="text-gray-600 hover:text-[#4a6b7b] transition-colors">Cómo Trabajamos</a>
                 <a href="#historia" class="text-gray-600 hover:text-[#4a6b7b] transition-colors">Historia</a>
+                <a href="#noticias" class="text-gray-600 hover:text-[#4a6b7b] transition-colors">Noticias</a>
+                <a href="#testimonios" class="text-gray-600 hover:text-[#4a6b7b] transition-colors">Testimonios</a>
                 <a href="#faq" class="text-gray-600 hover:text-[#4a6b7b] transition-colors">FAQ</a>
                 <a href="#contacto" class="bg-[#005f73] text-white px-4 py-2 rounded-full hover:bg-[#0a9396] transition-all duration-300">Contacto</a>
             </div>
@@ -99,6 +133,8 @@
             <a href="#marcas" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Nuestras Marcas</a>
             <a href="#proceso" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Cómo Trabajamos</a>
             <a href="#historia" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Historia</a>
+            <a href="#noticias" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Noticias</a>
+            <a href="#testimonios" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Testimonios</a>
             <a href="#faq" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">FAQ</a>
             <a href="#contacto" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Contacto</a>
         </div>
@@ -141,7 +177,7 @@
                 <p class="max-w-3xl mx-auto text-gray-600 leading-relaxed mb-8">
                     En Érase Una Vez, somos distribuidores exclusivos en Chile de las mejores marcas seleccionadas de Brasil. Con más de 5 años de experiencia en el mercado, trabajamos con una variedad de marcas y accesorios brasileños, cuidadosamente seleccionados para potenciar boutiques medianas y pequeñas. Nos enfocamos en ofrecer productos de alta calidad con márgenes de venta atractivos, y brindamos asesoramiento personalizado en todo el proceso de compra y distribución. Nuestro compromiso es ayudarte a hacer crecer tu negocio con productos únicos que destacan por su diseño, calidad y funcionalidad.
                 </p>
-                <a href="https://wa.me/56900000000?text=Hola%2C%20quisiera%20solicitar%20las%20tablas%20de%20precio%20y%20cat%C3%A1logos." target="_blank" class="inline-flex items-center gap-2 bg-[#25D366] text-white font-bold px-8 py-3 rounded-full hover:bg-[#128C7E] transition-all duration-300 transform hover:scale-105">
+                <a href="https://wa.me/56941129901?text=Hola%2C%20quisiera%20solicitar%20las%20tablas%20de%20precio%20y%20cat%C3%A1logos." target="_blank" class="inline-flex items-center gap-2 bg-[#25D366] text-white font-bold px-8 py-3 rounded-full hover:bg-[#128C7E] transition-all duration-300 transform hover:scale-105">
                     <i data-lucide="shopping-bag"></i>
                     Solicita tablas de precio y catálogos aquí
                 </a>
@@ -195,37 +231,80 @@
                     <p class="text-center text-gray-500">GRUPO TEXPA & GRUPO CRISTINA</p>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-                    <div class="brand-card" data-brand="Luc.boo"><h4 class="brand-name">Luc.boo</h4><p class="brand-desc">Moda masculina infantil y de bebé, con estilo contemporáneo y minimalista. Prendas cómodas y modernas para niños de 0 a 10 años.</p></div>
-                    <div class="brand-card" data-brand="Kukiê"><h4 class="brand-name">Kukiê</h4><p class="brand-desc">Para niñas que adoran jugar y crear combinaciones llenas de color. Tallas de 0 meses a 14 años, con confort y exclusividad.</p></div>
-                    <div class="brand-card" data-brand="Up Baby"><h4 class="brand-name">Up Baby</h4><p class="brand-desc">Acompañando generaciones desde la maternidad. Prendas con estilo, confort y calidad para niños y bebés, de prematuro a 12 años.</p></div>
-                    <div class="brand-card" data-brand="Quimby"><h4 class="brand-name">Quimby</h4><p class="brand-desc">Ropa cómoda y práctica para el día a día de niños y niñas. Fomenta el mundo lúdico de la infancia, de 0 a 14 años.</p></div>
-                    <div class="brand-card" data-brand="Bee Loop"><h4 class="brand-name">Bee Loop</h4><p class="brand-desc">Moda infantil y juvenil cómoda y práctica. Permite a los niños explorar y jugar de forma libre, de 0 a 14 años.</p></div>
+                    <div class="brand-card" data-brand="Luc.boo">
+                        <div class="aspect-square w-full"><img src="images/luc.boo.jpeg" alt="Marca Luc.boo" class="w-full h-full object-cover"></div>
+                        <div class="p-4 flex-grow flex flex-col"><h4 class="brand-name">Luc.boo</h4><p class="brand-desc">Moda masculina infantil y de bebé, con estilo contemporáneo y minimalista. Prendas cómodas y modernas para niños de 0 a 10 años.</p></div>
+                    </div>
+                    <div class="brand-card" data-brand="Kukiê">
+                        <div class="aspect-square w-full"><img src="images/kukie.jpeg" alt="Marca Kukiê" class="w-full h-full object-cover"></div>
+                        <div class="p-4 flex-grow flex flex-col"><h4 class="brand-name">Kukiê</h4><p class="brand-desc">Para niñas que adoran jugar y crear combinaciones llenas de color. Tallas de 0 meses a 14 años, con confort y exclusividad.</p></div>
+                    </div>
+                    <div class="brand-card" data-brand="Up Baby">
+                        <div class="aspect-square w-full"><img src="images/upbaby.jpg" alt="Marca Up Baby" class="w-full h-full object-cover"></div>
+                        <div class="p-4 flex-grow flex flex-col"><h4 class="brand-name">Up Baby</h4><p class="brand-desc">Acompañando generaciones desde la maternidad. Prendas con estilo, confort y calidad para niños y bebés, de prematuro a 12 años.</p></div>
+                    </div>
+                    <div class="brand-card" data-brand="Quimby">
+                        <div class="aspect-square w-full"><img src="images/quimby.jpg" alt="Marca Quimby" class="w-full h-full object-cover"></div>
+                        <div class="p-4 flex-grow flex flex-col"><h4 class="brand-name">Quimby</h4><p class="brand-desc">Ropa cómoda y práctica para el día a día de niños y niñas. Fomenta el mundo lúdico de la infancia, de 0 a 14 años.</p></div>
+                    </div>
+                    <div class="brand-card" data-brand="Bee Loop">
+                        <div class="aspect-square w-full"><img src="images/beeloop.jpg" alt="Marca Bee Loop" class="w-full h-full object-cover"></div>
+                        <div class="p-4 flex-grow flex flex-col"><h4 class="brand-name">Bee Loop</h4><p class="brand-desc">Moda infantil y juvenil cómoda y práctica. Permite a los niños explorar y jugar de forma libre, de 0 a 14 años.</p></div>
+                    </div>
                 </div>
 
                 <div class="mb-12">
                     <h3 class="text-2xl md:text-3xl font-bold text-center text-gray-700 mb-2">JUVENIL</h3>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-                     <div class="brand-card" data-brand="Lilimoon"><h4 class="brand-name">Lilimoon</h4><p class="brand-desc">Para niñas modernas y soñadoras. Colecciones versátiles y estilosas que van del tamaño 8 al 18 para expresar su personalidad.</p></div>
-                     <div class="brand-card" data-brand="Vick & Vicky"><h4 class="brand-name">Vick & Vicky</h4><p class="brand-desc">Moda juvenil para niñas exigentes. Prendas sofisticadas con detalles modernos y urbanos, tallas del 8 al 20.</p></div>
-                     <div class="brand-card" data-brand="Johnny Fox"><h4 class="brand-name">Johnny Fox</h4><p class="brand-desc">Ropa y accesorios con estilo moderno y práctico. Inspirada en el universo urbano, combina confort y durabilidad.</p></div>
+                     <div class="brand-card" data-brand="Lilimoon">
+                        <div class="aspect-square w-full"><img src="images/lilimoon.jpeg" alt="Marca Lilimoon" class="w-full h-full object-cover"></div>
+                        <div class="p-4 flex-grow flex flex-col"><h4 class="brand-name">Lilimoon</h4><p class="brand-desc">Para niñas modernas y soñadoras. Colecciones versátiles y estilosas que van del tamaño 8 al 18 para expresar su personalidad.</p></div>
+                     </div>
+                     <div class="brand-card" data-brand="Vick & Vicky">
+                        <div class="aspect-square w-full"><img src="images/vic&vicky.jpeg" alt="Marca Vick & Vicky" class="w-full h-full object-cover"></div>
+                        <div class="p-4 flex-grow flex flex-col"><h4 class="brand-name">Vick & Vicky</h4><p class="brand-desc">Moda juvenil para niñas exigentes. Prendas sofisticadas con detalles modernos y urbanos, tallas del 8 al 20.</p></div>
+                     </div>
+                     <div class="brand-card" data-brand="Johnny Fox">
+                        <div class="aspect-square w-full"><img src="images/johnny fox.jpeg" alt="Marca Johnny Fox" class="w-full h-full object-cover"></div>
+                        <div class="p-4 flex-grow flex flex-col"><h4 class="brand-name">Johnny Fox</h4><p class="brand-desc">Ropa y accesorios con estilo moderno y práctico. Inspirada en el universo urbano, combina confort y durabilidad.</p></div>
+                     </div>
                 </div>
 
                 <div class="mb-12">
                     <h3 class="text-2xl md:text-3xl font-bold text-center text-gray-700 mb-2">ADULTOS</h3>
                 </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-                    <div class="brand-card" data-brand="Vida Marinha"><h4 class="brand-name">Vida Marinha</h4><p class="brand-desc">Fusión de surfwear y moda familiar. Prendas cómodas y modernas para todas las edades con compromiso de sostenibilidad.</p></div>
-                    <div class="brand-card" data-brand="2Rios Lenceria"><h4 class="brand-name">2Rios Lenceria</h4><p class="brand-desc">Belleza, confort y sofisticación para la mujer moderna. Piezas básicas, románticas y atrevidas con tejidos de alta tecnología.</p></div>
-                    <div class="brand-card" data-brand="Olho Fatal"><h4 class="brand-name">Olho Fatal</h4><p class="brand-desc">Diseño moderno y calidad impecable. Prendas versátiles con estampas exclusivas y cortes contemporáneos para la mujer brasileña.</p></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                    <div class="brand-card" data-brand="Vida Marinha">
+                        <div class="aspect-square w-full"><img src="images/VIDA MARINHA.jpeg" alt="Marca Vida Marinha" class="w-full h-full object-cover"></div>
+                        <div class="p-4 flex-grow flex flex-col"><h4 class="brand-name">Vida Marinha</h4><p class="brand-desc">Fusión de surfwear y moda familiar, ofreciendo prendas cómodas y modernas para todas las edades, con un fuerte compromiso con la sostenibilidad.</p></div>
+                    </div>
+                    <div class="brand-card" data-brand="2Rios Lenceria">
+                        <div class="aspect-square w-full"><img src="images/2 RIOS.jpeg" alt="Marca 2 Rios Lenceria" class="w-full h-full object-cover"></div>
+                        <div class="p-4 flex-grow flex flex-col"><h4 class="brand-name">2Rios Lenceria</h4><p class="brand-desc">Belleza, confort y sofisticación para la mujer moderna. Utiliza tejidos de alta tecnología para un ajuste perfecto y bienestar durante todo el día.</p></div>
+                    </div>
+                    <div class="brand-card" data-brand="Olho Fatal">
+                        <div class="aspect-square w-full"><img src="images/OLHO FATAL.jpeg" alt="Marca Olho Fatal" class="w-full h-full object-cover"></div>
+                        <div class="p-4 flex-grow flex flex-col"><h4 class="brand-name">Olho Fatal</h4><p class="brand-desc">Fusiona diseño moderno y calidad impecable para ofrecer prendas versátiles, llenas de actitud y que nunca pasan de moda.</p></div>
+                    </div>
+                    <div class="brand-card" data-brand="Estilo do Corpo">
+                        <div class="aspect-square w-full"><img src="images/ESTILO DO CORPO.jpeg" alt="Marca Estilo do Corpo" class="w-full h-full object-cover"></div>
+                        <div class="p-4 flex-grow flex flex-col"><h4 class="brand-name">Estilo do Corpo</h4><p class="brand-desc">Descripción de la marca Estilo do Corpo próximamente.</p></div>
+                    </div>
                 </div>
 
                 <div class="mb-12">
                     <h3 class="text-2xl md:text-3xl font-bold text-center text-gray-700 mb-2">CALZADO</h3>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="brand-card" data-brand="Baby Gut"><h4 class="brand-name">Baby Gut</h4><p class="brand-desc">Calzado infantil con foco en comodidad y estilo. Materiales suaves y resistentes para acompañar los primeros pasos.</p></div>
-                    <div class="brand-card" data-brand="Klin"><h4 class="brand-name">Klin</h4><p class="brand-desc">Más de 40 años creando calzados infantiles anatómicos. Sello "Caminar Saludable" que combina confort, diseño y calidad.</p></div>
+                    <div class="brand-card" data-brand="Baby Gut">
+                        <div class="aspect-square w-full"><img src="images/Babygut.jpeg" alt="Marca Baby Gut" class="w-full h-full object-cover"></div>
+                        <div class="p-4 flex-grow flex flex-col"><h4 class="brand-name">Baby Gut</h4><p class="brand-desc">Calzado infantil con foco en comodidad y estilo. Materiales suaves y resistentes para acompañar los primeros pasos.</p></div>
+                    </div>
+                    <div class="brand-card" data-brand="Klin">
+                        <div class="aspect-square w-full"><img src="images/KLIN_Espanhol.jpg" alt="Marca Klin" class="w-full h-full object-cover"></div>
+                        <div class="p-4 flex-grow flex flex-col"><h4 class="brand-name">Klin</h4><p class="brand-desc">Más de 40 años creando calzados infantiles anatómicos. Sello "Caminar Saludable" que combina confort, diseño y calidad.</p></div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -262,17 +341,50 @@
                         </p>
                         <p class="text-gray-600 font-semibold italic">— Marco Boero, CEO Érase Una Vez</p>
                     </div>
-                    <div class="bg-gray-50 p-8 rounded-lg shadow-lg">
-                        <h2 class="text-3xl md:text-4xl font-bold text-[#005f73] mb-6">Noticias y Proyecciones</h2>
-                        <div class="space-y-6">
-                            <div>
-                                <h3 class="text-xl font-semibold text-gray-700 mb-2">Colección Alto Verano 2026: ¡Nuestra Más Grande!</h3>
-                                <p class="text-gray-600">Tras nuestro reciente viaje a Brasil, estamos orgullosos de presentar la colección Alto Verano 2026. ¡Es la más extensa y variada que hemos tenido! Agradecemos la confianza de estas grandes empresas que nos permiten traer lo mejor a Chile.</p>
+                    <div>
+                        <img src="images/nuestrahistoria.jpg" alt="Familia fundadora de Érase Una Vez" class="rounded-lg shadow-xl w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Noticias Section -->
+        <section id="noticias" class="py-20 md:py-28 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-[#005f73] mb-12">Noticias</h2>
+                <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                    <!-- News Item 1 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
+                        <img src="images/fotoequipofather.jpg" alt="Equipo de Father & Company con Érase una Vez" class="w-full h-64 object-cover">
+                        <div class="p-6 flex-grow flex flex-col">
+                            <div class="news-content">
+                                <p class="text-gray-600 leading-relaxed">
+                                    Es un honor para Father&Company recibir en Brasil Erase una Vez que es tan estratégico para el desarrollo de nuestras marcas en Chile. Su visita marcó el inicio de una etapa llena de oportunidades, donde creemos firmemente en el poder de las alianzas entre países latinoamericanos para construir juntos un futuro de éxito.
+                                    <span class="hidden">
+                                    <br><br>
+                                    Creemos que la colaboración entre Father y Erase una Vez va mucho más allá de los negocios: es un puente cultural y comercial donde se comparten sueños, creatividad y prosperidad. Nuestro mayor deseo es que esta relación se fortalezca día tras día, consolidando la presencia de marcas brasileñas en Chile con productos de excelencia, y creando beneficios mutuos para nuestras comunidades y economías.
+                                    </span>
+                                </p>
                             </div>
-                             <div>
-                                <h3 class="text-xl font-semibold text-gray-700 mb-2">Expectativas Prometedoras para el Verano 2026</h3>
-                                <p class="text-gray-600">Las proyecciones para la temporada son muy alentadoras. Según la CNC, se proyecta un crecimiento en el sector minorista, lo que genera un escenario optimista para el consumo en vestuario y accesorios. ¡Estamos preparados!</p>
+                            <button class="read-more-btn text-sm text-[#005f73] font-semibold mt-2 self-start hover:underline">Leer más...</button>
+                            <p class="text-gray-800 font-semibold italic text-right mt-4">— ANA CAROLINA STRUBE</p>
+                        </div>
+                    </div>
+                    <!-- News Item 2 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
+                        <img src="images/FOTO LEANDRO TEXPA.jpeg" alt="Leandro Camargo, Gerente de Exportación de Grupo Texpa" class="w-full h-64 object-cover">
+                        <div class="p-6 flex-grow flex flex-col">
+                             <div class="news-content">
+                                <p class="text-gray-600 leading-relaxed">
+                                    Chile es, sin duda, un país estratégico para nuestro negocio, no solo por su proximidad logística, sino también porque nuestros productos satisfacen las expectativas de los clientes en cuanto a diseño, ajuste, calidad y aplicación de las tendencias de moda.
+                                    <span class="hidden">
+                                    <br><br>
+                                    En este contexto, hemos mantenido una exitosa colaboración con "Erase una Vez" durante varios años. Somos optimistas no solo sobre el presente, sino también sobre el próspero futuro que nos espera.
+                                    </span>
+                                </p>
                             </div>
+                            <button class="read-more-btn text-sm text-[#005f73] font-semibold mt-2 self-start hover:underline">Leer más...</button>
+                            <p class="text-gray-800 font-semibold italic text-right mt-4">— Leandro Camargo, Gerente de Exportación, Grupo Texpa</p>
                         </div>
                     </div>
                 </div>
@@ -280,18 +392,19 @@
         </section>
 
         <!-- Testimonios -->
-        <section id="testimonios" class="py-20 md:py-28 bg-gray-100">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold text-[#005f73] mb-6">Qué Dicen Nuestros Clientes</h2>
-                 <div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
-                    <p class="text-2xl text-gray-400 font-semibold italic">"RESEÑAS DE TIENDAS"</p>
-                    <p class="mt-4 text-gray-500">(TE LAS ENVIARE PRONTO)</p>
+        <section id="testimonios" class="py-20 md:py-28 bg-white overflow-hidden">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-[#005f73] mb-12">Qué Dicen Nuestros Clientes</h2>
+                <div id="testimonial-scroller-container" class="relative w-full" style="mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);">
+                    <div class="flex scroller hover:[animation-play-state:paused]">
+                        <!-- Testimonial Cards are inserted here by JS -->
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- FAQ -->
-        <section id="faq" class="py-20 md:py-28 bg-white">
+        <section id="faq" class="py-20 md:py-28 bg-gray-50">
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-center text-[#005f73] mb-12">¿Tienes Preguntas? Tenemos Respuestas</h2>
                 <div id="faq-accordion" class="max-w-3xl mx-auto space-y-4">
@@ -301,7 +414,7 @@
         </section>
 
         <!-- Contacto -->
-        <section id="contacto" class="py-20 md:py-28 bg-gray-100">
+        <section id="contacto" class="py-20 md:py-28 bg-white">
             <div class="container mx-auto px-6 text-center">
                  <h2 class="text-3xl md:text-4xl font-bold text-[#005f73] mb-8">Contacto</h2>
                  <div class="flex flex-col md:flex-row justify-center items-center gap-8">
@@ -311,7 +424,7 @@
                     </div>
                      <div class="flex items-center gap-3 text-lg">
                         <i data-lucide="phone" class="text-[#0a9396]"></i>
-                        <span class="text-gray-700">(Número por definir)</span>
+                        <a href="https://wa.me/56941129901" target="_blank" class="text-gray-700 hover:text-[#005f73]">+56 9 4112 9901</a>
                     </div>
                  </div>
             </div>
@@ -324,7 +437,7 @@
         <div class="container mx-auto px-6 py-12">
             <div class="grid md:grid-cols-3 gap-8 text-center md:text-left">
                 <div>
-                    <img src="Erase una vez - Logo.png" alt="Logo Érase Una Vez" class="h-16 mx-auto md:mx-0 mb-4">
+                    <img src="images/Erase una vez - Logo.png" alt="Logo Érase Una Vez" class="h-16 mx-auto md:mx-0 mb-4">
                     <p class="text-sm text-gray-400">Distribuidor Exclusivo de Marcas Brasileñas en Chile</p>
                 </div>
                 <div>
@@ -341,7 +454,7 @@
                     <ul class="space-y-2 text-sm">
                         <li class="flex items-center justify-center md:justify-start gap-2">
                             <i data-lucide="phone" class="h-4 w-4"></i>
-                            <a href="https://wa.me/56900000000" target="_blank" class="text-gray-300 hover:text-white">+56 9 XXXX XXXX</a>
+                            <a href="https://wa.me/56941129901" target="_blank" class="text-gray-300 hover:text-white">+56 9 4112 9901</a>
                         </li>
                          <li class="flex items-center justify-center md:justify-start gap-2">
                             <i data-lucide="instagram" class="h-4 w-4"></i>
@@ -448,7 +561,7 @@
 
         // Brand Card WhatsApp Link
         const brandCards = document.querySelectorAll('.brand-card');
-        const phoneNumber = '56900000000'; // Placeholder - REMEMBER TO CHANGE THIS
+        const phoneNumber = '56941129901';
         brandCards.forEach(card => {
             card.addEventListener('click', () => {
                 const brandName = card.dataset.brand;
@@ -491,6 +604,72 @@
                     questionBtn.querySelector('svg').classList.remove('rotate-180');
                 }
             });
+        });
+
+        // Read More Button for News
+        document.querySelectorAll('.read-more-btn').forEach(button => {
+            button.addEventListener('click', event => {
+                const contentWrapper = event.target.previousElementSibling;
+                const hiddenSpan = contentWrapper.querySelector('span');
+                
+                const isExpanded = contentWrapper.classList.contains('expanded');
+
+                if (isExpanded) {
+                    contentWrapper.classList.remove('expanded');
+                    hiddenSpan.classList.add('hidden');
+                    event.target.textContent = 'Leer más...';
+                } else {
+                    contentWrapper.classList.add('expanded');
+                    hiddenSpan.classList.remove('hidden');
+                    event.target.textContent = 'Leer menos';
+                }
+            });
+        });
+        
+        // Testimonial Scroller
+        const scroller = document.querySelector("#testimonial-scroller-container .scroller");
+        const testimonials = [
+            {
+                quote: "Desde que abrí mi boutique hace cuatro años, he confiado en Érase Una Vez. Su ropa es de una calidad insuperable y realmente marca la diferencia en mi stock. Mis clientas siempre elogian los diseños exclusivos que no encuentran en ningún otro lugar. Es la razón principal por la que siguen volviendo. ¡Gracias por ser un socio tan confiable!",
+                name: "Daniela O.",
+                location: "Pucón"
+            },
+            {
+                quote: "Cuando comencé con mi tienda online, me sentía un poco perdida con tantas opciones. El equipo de Érase Una Vez fue un apoyo increíble desde el minuto uno. Me brindaron un asesoramiento excepcional, ayudándome a encontrar las marcas brasileñas perfectas para mi público. Su guía fue fundamental para que mi negocio despegara con la selección adecuada. ¡Un servicio realmente integral!",
+                name: "Carolina M.",
+                location: "Valparaíso"
+            },
+            {
+                quote: "Trabajar con Érase Una Vez ha sido un acierto para mi negocio. Los márgenes de ganancia que obtengo con sus productos son excelentes, lo que me permite crecer de manera sostenible. Además, la exclusividad de sus marcas brasileñas me da una ventaja competitiva enorme. Mis clientes valoran mucho tener acceso a prendas únicas y de calidad.",
+                name: "Ricardo P.",
+                location: "Concepción"
+            },
+            {
+                quote: "Como madre y dueña de una tienda de ropa infantil, sé lo difícil que es encontrar prendas que resistan el ritmo de los niños. La ropa de Érase Una Vez es de muy alta calidad, increíblemente duradera. Mis clientas en el sur de Chile valoran muchísimo que, a pesar de que los niños son inquietos y la ropa pasa constantemente por la secadora, las prendas se mantienen perfectas. ¡Es una inversión que vale la pena!",
+                name: "Sofía R.",
+                location: "Talagante"
+            },
+            {
+                quote: "Estoy realmente impresionada con las colecciones de ropa adulta y deportiva que trae Érase Una Vez. Los diseños son modernos y vanguardistas, y el calce de las prendas es simplemente perfecto, realzando la figura y ofreciendo comodidad. Mis clientas están encantadas con la calidad y cómo les queda la ropa, lo que se traduce en ventas recurrentes y clientas felices.",
+                name: "Andrea G.",
+                location: "La Serena"
+            }
+        ];
+
+        const allTestimonials = [...testimonials, ...testimonials]; // Duplicate for infinite scroll effect
+
+        allTestimonials.forEach(testimonial => {
+            const testimonialEl = document.createElement('div');
+            testimonialEl.className = 'flex-shrink-0 w-full md:w-1/2 lg:w-1/3 p-4';
+            testimonialEl.innerHTML = `
+                <div class="bg-white p-6 rounded-lg shadow-md h-full flex flex-col justify-center">
+                    <i data-lucide="quote" class="mx-auto text-[#94d2bd] h-8 w-8 mb-4"></i>
+                    <p class="text-gray-600 italic leading-relaxed mb-4 text-sm">"${testimonial.quote}"</p>
+                    <p class="font-bold text-gray-800 uppercase tracking-wider text-xs">${testimonial.name}</p>
+                    <p class="text-xs text-gray-500">${testimonial.location}</p>
+                </div>
+            `;
+            scroller.appendChild(testimonialEl);
         });
 
         // Adjust header padding on scroll
