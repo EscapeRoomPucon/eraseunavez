@@ -67,6 +67,27 @@
             outline-offset: 2px;
             border-radius: 0.25rem;
         }
+        .news-content {
+            max-height: 100px; /* Adjust this value to show more or less initial text */
+            overflow: hidden;
+            position: relative;
+            transition: max-height 0.7s ease-in-out;
+        }
+        .news-content.expanded {
+            max-height: 1000px; /* A large value to ensure all content is visible */
+        }
+        .news-content::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: linear-gradient(to top, white, transparent);
+        }
+        .news-content.expanded::after {
+            display: none;
+        }
         
         /* Testimonial Scroller */
         @keyframes scroll {
@@ -314,7 +335,7 @@
                         <p class="text-gray-600 font-semibold italic">— Marco Boero, CEO Érase Una Vez</p>
                     </div>
                     <div>
-                        <img src="images/nuestrahistoria.jpg" alt="Familia fundadora de Érase Una Vez" class="rounded-lg shadow-xl w-full h-full object-cover">
+                        <img src="images/nuestrahistoria.jpeg" alt="Familia fundadora de Érase Una Vez" class="rounded-lg shadow-xl w-full h-full object-cover">
                     </div>
                 </div>
             </div>
@@ -327,7 +348,7 @@
                 <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
                     <!-- News Item 1 -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
-                        <img src="images/fotoequipofather.jpg" alt="Equipo de Father & Company con Érase una Vez" class="w-full h-48 object-cover object-top">
+                        <img src="images/fotoequipofather.png" alt="Equipo de Father & Company con Érase una Vez" class="w-full h-48 object-cover object-top">
                         <div class="p-6 flex-grow flex flex-col">
                             <p class="text-gray-600 leading-relaxed mb-4 text-sm">
                                 Es un honor para Father&Company recibir en Brasil Erase una Vez que es tan estratégico para el desarrollo de nuestras marcas en Chile. Su visita marcó el inicio de una etapa llena de oportunidades, donde creemos firmemente en el poder de las alianzas entre países latinoamericanos para construir juntos un futuro de éxito.
