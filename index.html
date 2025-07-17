@@ -26,9 +26,7 @@
             font-family: 'Playfair Display', serif;
         }
         .hero-slide {
-            background-size: cover;
-            background-position: center;
-            transition: opacity 1s ease-in-out;
+            transition: opacity 1.5s ease-in-out;
         }
         .faq-answer {
             max-height: 0;
@@ -142,29 +140,24 @@
 
     <!-- Hero Section -->
     <section id="home" class="relative h-screen w-full text-white overflow-hidden">
-        <!-- Layer 1: Background Images -->
+        <!-- Layer 1: Image Carousel -->
         <div id="hero-carousel" class="absolute inset-0 z-0">
-            <div class="hero-slide absolute inset-0 opacity-100" style="background-color: #005f73;"></div>
-            <div class="hero-slide absolute inset-0 opacity-0" style="background-color: #94d2bd;"></div>
-            <div class="hero-slide absolute inset-0 opacity-0" style="background-color: #e9d8a6;"></div>
-            <div class="hero-slide absolute inset-0 opacity-0" style="background-color: #ee9b00;"></div>
+            <img src="images/luc.boo.jpeg" alt="Imagen de la marca Luc.boo" class="hero-slide absolute inset-0 w-full h-full object-cover opacity-100">
+            <img src="images/kukie.jpeg" alt="Imagen de la marca Kukiê" class="hero-slide absolute inset-0 w-full h-full object-cover opacity-0">
+            <img src="images/lilimoon.jpeg" alt="Imagen de la marca Lilimoon" class="hero-slide absolute inset-0 w-full h-full object-cover opacity-0">
+            <img src="images/vic&vicky.jpeg" alt="Imagen de la marca Vick & Vicky" class="hero-slide absolute inset-0 w-full h-full object-cover opacity-0">
+            <img src="images/VIDA MARINHA.jpeg" alt="Imagen de la marca Vida Marinha" class="hero-slide absolute inset-0 w-full h-full object-cover opacity-0">
+            <img src="images/OLHO FATAL.jpeg" alt="Imagen de la marca Olho Fatal" class="hero-slide absolute inset-0 w-full h-full object-cover opacity-0">
         </div>
         <!-- Layer 2: Dark Overlay -->
         <div class="absolute inset-0 bg-black/50 z-10"></div>
 
-        <!-- Layer 4: Main Slogan (Centered) -->
-        <div class="relative z-30 flex flex-col justify-center h-full text-center p-6">
+        <!-- Layer 3: Main Slogan (Centered) -->
+        <div class="relative z-20 flex flex-col justify-center h-full text-center p-6">
             <div>
-                <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold shadow-text leading-tight">
+                <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold shadow-text leading-tight">
                     Más de 5 años conectando marcas de Brasil con tiendas de todo Chile
                 </h1>
-            </div>
-        </div>
-
-        <!-- Layer 3: Rotating Text (Behind slogan, positioned lower) -->
-        <div class="absolute inset-x-0 bottom-10 md:bottom-12 z-20 text-center pointer-events-none">
-            <div id="rotating-text-container" class="text-5xl md:text-7xl font-bold text-white/20 transition-opacity duration-500 ease-in-out">
-                <!-- Text will be inserted here by JS -->
             </div>
         </div>
     </section>
@@ -355,36 +348,26 @@
                 <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
                     <!-- News Item 1 -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
-                        <img src="images/fotoequipofather.png" alt="Equipo de Father & Company con Érase una Vez" class="w-full h-64 object-cover">
+                        <img src="images/fotoequipofather.jpg" alt="Equipo de Father & Company con Érase una Vez" class="w-full h-48 object-cover object-top">
                         <div class="p-6 flex-grow flex flex-col">
-                            <div class="news-content">
-                                <p class="text-gray-600 leading-relaxed">
-                                    Es un honor para Father&Company recibir en Brasil Erase una Vez que es tan estratégico para el desarrollo de nuestras marcas en Chile. Su visita marcó el inicio de una etapa llena de oportunidades, donde creemos firmemente en el poder de las alianzas entre países latinoamericanos para construir juntos un futuro de éxito.
-                                    <span class="hidden">
-                                    <br><br>
-                                    Creemos que la colaboración entre Father y Erase una Vez va mucho más allá de los negocios: es un puente cultural y comercial donde se comparten sueños, creatividad y prosperidad. Nuestro mayor deseo es que esta relación se fortalezca día tras día, consolidando la presencia de marcas brasileñas en Chile con productos de excelencia, y creando beneficios mutuos para nuestras comunidades y economías.
-                                    </span>
-                                </p>
-                            </div>
-                            <button class="read-more-btn text-sm text-[#005f73] font-semibold mt-2 self-start hover:underline">Leer más...</button>
-                            <p class="text-gray-800 font-semibold italic text-right mt-4">— ANA CAROLINA STRUBE</p>
+                            <p class="text-gray-600 leading-relaxed mb-4 text-sm">
+                                Es un honor para Father&Company recibir en Brasil Erase una Vez que es tan estratégico para el desarrollo de nuestras marcas en Chile. Su visita marcó el inicio de una etapa llena de oportunidades, donde creemos firmemente en el poder de las alianzas entre países latinoamericanos para construir juntos un futuro de éxito.
+                                <br><br>
+                                Creemos que la colaboración entre Father y Erase una Vez va mucho más allá de los negocios: es un puente cultural y comercial donde se comparten sueños, creatividad y prosperidad. Nuestro mayor deseo es que esta relación se fortalezca día tras día, consolidando la presencia de marcas brasileñas en Chile con productos de excelencia, y creando beneficios mutuos para nuestras comunidades y economías.
+                            </p>
+                            <p class="text-gray-800 font-semibold italic text-right mt-auto">— ANA CAROLINA STRUBE</p>
                         </div>
                     </div>
                     <!-- News Item 2 -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
-                        <img src="images/FOTO LEANDRO TEXPA.jpeg" alt="Leandro Camargo, Gerente de Exportación de Grupo Texpa" class="w-full h-64 object-cover">
+                        <img src="images/FOTO LEANDRO TEXPA.jpeg" alt="Leandro Camargo, Gerente de Exportación de Grupo Texpa" class="w-full h-48 object-cover">
                         <div class="p-6 flex-grow flex flex-col">
-                             <div class="news-content">
-                                <p class="text-gray-600 leading-relaxed">
-                                    Chile es, sin duda, un país estratégico para nuestro negocio, no solo por su proximidad logística, sino también porque nuestros productos satisfacen las expectativas de los clientes en cuanto a diseño, ajuste, calidad y aplicación de las tendencias de moda.
-                                    <span class="hidden">
-                                    <br><br>
-                                    En este contexto, hemos mantenido una exitosa colaboración con "Erase una Vez" durante varios años. Somos optimistas no solo sobre el presente, sino también sobre el próspero futuro que nos espera.
-                                    </span>
-                                </p>
-                            </div>
-                            <button class="read-more-btn text-sm text-[#005f73] font-semibold mt-2 self-start hover:underline">Leer más...</button>
-                            <p class="text-gray-800 font-semibold italic text-right mt-4">— Leandro Camargo, Gerente de Exportación, Grupo Texpa</p>
+                             <p class="text-gray-600 leading-relaxed mb-4 text-sm">
+                                Chile es, sin duda, un país estratégico para nuestro negocio, no solo por su proximidad logística, sino también porque nuestros productos satisfacen las expectativas de los clientes en cuanto a diseño, ajuste, calidad y aplicación de las tendencias de moda.
+                                <br><br>
+                                En este contexto, hemos mantenido una exitosa colaboración con "Erase una Vez" durante varios años. Somos optimistas no solo sobre el presente, sino también sobre el próspero futuro que nos espera.
+                            </p>
+                            <p class="text-gray-800 font-semibold italic text-right mt-auto">— Leandro Camargo, Gerente de Exportación, Grupo Texpa</p>
                         </div>
                     </div>
                 </div>
