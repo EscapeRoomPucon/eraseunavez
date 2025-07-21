@@ -402,8 +402,10 @@
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-center text-[#005f73] mb-12">Qué Dicen Nuestros Clientes</h2>
                 <div id="testimonial-container" class="relative">
-                    <div id="testimonial-scroller" class="flex overflow-x-auto scroll-smooth no-scrollbar snap-x snap-mandatory">
-                        <!-- Testimonial Cards are inserted here by JS -->
+                    <div class="overflow-hidden">
+                        <div id="testimonial-scroller" class="flex">
+                            <!-- Testimonial Cards are inserted here by JS -->
+                        </div>
                     </div>
                     <button id="prev-testimonial" class="absolute left-0 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white rounded-full p-2 transition-colors z-10 -ml-4 md:ml-0">
                         <i data-lucide="chevron-left" class="h-6 w-6 text-gray-700"></i>
@@ -644,7 +646,7 @@
         function startAutoScroll() {
             stopAutoScroll(); 
             testimonialScrollInterval = setInterval(() => {
-                if (!isPaused) {
+                if (!isPaused && scroller) {
                     if (scroller.scrollLeft >= (scroller.scrollWidth / 2)) {
                         scroller.scrollTo({ left: 0, behavior: 'auto' });
                     } else {
