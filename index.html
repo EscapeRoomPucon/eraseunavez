@@ -12,7 +12,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -22,8 +22,9 @@
         body {
             font-family: 'Inter', sans-serif;
         }
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
+        h1, h2, h3, .brand-name {
+             font-family: 'Inter', sans-serif;
+             font-weight: 700; /* Maintain boldness for headings */
         }
         .hero-slide {
             transition: opacity 1.5s ease-in-out;
@@ -50,9 +51,7 @@
             border-color: #0a9396;
         }
         .brand-name {
-            font-family: 'Playfair Display', serif;
             font-size: 1.5rem;
-            font-weight: 700;
             color: #005f73;
             margin-bottom: 0.75rem;
         }
@@ -67,35 +66,39 @@
             outline-offset: 2px;
             border-radius: 0.25rem;
         }
-        .news-content {
-            max-height: 100px; /* Adjust this value to show more or less initial text */
-            overflow: hidden;
-            position: relative;
-            transition: max-height 0.7s ease-in-out;
-        }
-        .news-content.expanded {
-            max-height: 1000px; /* A large value to ensure all content is visible */
-        }
-        .news-content::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 30px;
-            background: linear-gradient(to top, white, transparent);
-        }
-        .news-content.expanded::after {
-            display: none;
-        }
         
-        /* Testimonial Scroller */
-        @keyframes scroll {
+        /* Informational Top Bar Scroller */
+        @keyframes scroll-horizontal {
             from { transform: translateX(0); }
             to { transform: translateX(-50%); }
         }
-        .scroller {
-            animation: scroll 40s linear infinite; /* Adjusted speed */
+        .scrolling-text-container {
+            animation: scroll-horizontal 25s linear infinite;
+        }
+
+        /* Custom scrollbar for news section */
+        .news-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .news-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .news-scrollbar::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 10px;
+        }
+        .news-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #aaa;
+        }
+        
+        /* Hide scrollbar for testimonial scroller */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
         }
     </style>
 </head>
@@ -103,9 +106,18 @@
 
     <!-- Header & Navigation -->
     <header id="header" class="bg-white/80 backdrop-blur-lg shadow-md fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <!-- Informational Top Bar -->
+        <div class="bg-[#efaf3e] text-gray-900 text-xs font-semibold overflow-hidden">
+            <div class="scrolling-text-container whitespace-nowrap py-1.5">
+                <span class="mx-8">Compra minima de $500.000 CLP / Sobre $5.000.000 CLP obten un 5% de descuento.</span>
+                <span class="mx-8">Compra minima de $500.000 CLP / Sobre $5.000.000 CLP obten un 5% de descuento.</span>
+                <span class="mx-8">Compra minima de $500.000 CLP / Sobre $5.000.000 CLP obten un 5% de descuento.</span>
+                <span class="mx-8">Compra minima de $500.000 CLP / Sobre $5.000.000 CLP obten un 5% de descuento.</span>
+            </div>
+        </div>
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
             <a href="#home">
-                <img src="images/Erase una vez - Logo.png" alt="Logo Érase Una Vez" class="h-12 md:h-16">
+                <img src="https://placehold.co/192x64/001219/ffffff?text=Érase+Una+Vez" alt="Logo Érase Una Vez" class="h-12 md:h-16" onerror="this.onerror=null;this.src='https://placehold.co/192x64/001219/ffffff?text=Logo+Error';">
             </a>
             <div class="hidden lg:flex space-x-6 items-center text-sm font-medium">
                 <a href="#quienes-somos" class="text-gray-600 hover:text-[#4a6b7b] transition-colors">Quiénes Somos</a>
@@ -142,12 +154,12 @@
     <section id="home" class="relative h-screen w-full text-white overflow-hidden">
         <!-- Layer 1: Image Carousel -->
         <div id="hero-carousel" class="absolute inset-0 z-0">
-            <img src="images/luc.boo.jpeg" alt="Imagen de la marca Luc.boo" class="hero-slide absolute inset-0 w-full h-full object-cover opacity-100">
-            <img src="images/kukie.jpeg" alt="Imagen de la marca Kukiê" class="hero-slide absolute inset-0 w-full h-full object-cover opacity-0">
-            <img src="images/lilimoon.jpeg" alt="Imagen de la marca Lilimoon" class="hero-slide absolute inset-0 w-full h-full object-cover opacity-0">
-            <img src="images/vic&vicky.jpeg" alt="Imagen de la marca Vick & Vicky" class="hero-slide absolute inset-0 w-full h-full object-cover opacity-0">
-            <img src="images/VIDA MARINHA.jpeg" alt="Imagen de la marca Vida Marinha" class="hero-slide absolute inset-0 w-full h-full object-cover opacity-0">
-            <img src="images/OLHO FATAL.jpeg" alt="Imagen de la marca Olho Fatal" class="hero-slide absolute inset-0 w-full h-full object-cover opacity-0">
+            <img src="https://placehold.co/1920x1080/a9a9a9/ffffff?text=Luc.boo" alt="Imagen de la marca Luc.boo" class="hero-slide absolute inset-0 w-full h-full object-cover opacity-100">
+            <img src="https://placehold.co/1920x1080/b9b9b9/ffffff?text=Kukiê" alt="Imagen de la marca Kukiê" class="hero-slide absolute inset-0 w-full h-full object-cover opacity-0">
+            <img src="https://placehold.co/1920x1080/c9c9c9/ffffff?text=Lilimoon" alt="Imagen de la marca Lilimoon" class="hero-slide absolute inset-0 w-full h-full object-cover opacity-0">
+            <img src="https://placehold.co/1920x1080/d9d9d9/ffffff?text=Vick+&+Vicky" alt="Imagen de la marca Vick & Vicky" class="hero-slide absolute inset-0 w-full h-full object-cover opacity-0">
+            <img src="https://placehold.co/1920x1080/e9e9e9/333333?text=Vida+Marinha" alt="Imagen de la marca Vida Marinha" class="hero-slide absolute inset-0 w-full h-full object-cover opacity-0">
+            <img src="https://placehold.co/1920x1080/f9f9f9/333333?text=Olho+Fatal" alt="Imagen de la marca Olho Fatal" class="hero-slide absolute inset-0 w-full h-full object-cover opacity-0">
         </div>
         <!-- Layer 2: Dark Overlay -->
         <div class="absolute inset-0 bg-black/50 z-10"></div>
@@ -155,9 +167,14 @@
         <!-- Layer 3: Main Slogan (Centered) -->
         <div class="relative z-20 flex flex-col justify-center h-full text-center p-6">
             <div>
-                <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold shadow-text leading-tight">
+                <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold shadow-text leading-tight" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.7);">
                     Más de 5 años conectando marcas de Brasil con tiendas de todo Chile
                 </h1>
+            </div>
+            <div class="mt-8">
+                 <a href="https://wa.me/56941129901?text=Hola%2C%20me%20gustaría%20recibir%20más%20información." target="_blank" class="inline-flex items-center gap-2 bg-[#25D366] text-white font-bold px-8 py-4 rounded-full hover:bg-[#128C7E] transition-all duration-300 transform hover:scale-105 text-lg">
+                    Contáctanos aquí
+                </a>
             </div>
         </div>
     </section>
@@ -225,23 +242,23 @@
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
                     <div class="brand-card" data-brand="Luc.boo">
-                        <div class="aspect-square w-full"><img src="images/luc.boo.jpeg" alt="Marca Luc.boo" class="w-full h-full object-cover"></div>
+                        <div class="aspect-square w-full p-4"><img src="https://placehold.co/500x500/eeeeee/333333?text=Luc.boo" alt="Marca Luc.boo" class="w-full h-full object-contain"></div>
                         <div class="p-4 flex-grow flex flex-col"><h4 class="brand-name">Luc.boo</h4><p class="brand-desc">Moda masculina infantil y de bebé, con estilo contemporáneo y minimalista. Prendas cómodas y modernas para niños de 0 a 10 años.</p></div>
                     </div>
                     <div class="brand-card" data-brand="Kukiê">
-                        <div class="aspect-square w-full"><img src="images/kukie.jpeg" alt="Marca Kukiê" class="w-full h-full object-cover"></div>
+                        <div class="aspect-square w-full"><img src="https://placehold.co/500x500/eeeeee/333333?text=Kukiê" alt="Marca Kukiê" class="w-full h-full object-cover"></div>
                         <div class="p-4 flex-grow flex flex-col"><h4 class="brand-name">Kukiê</h4><p class="brand-desc">Para niñas que adoran jugar y crear combinaciones llenas de color. Tallas de 0 meses a 14 años, con confort y exclusividad.</p></div>
                     </div>
                     <div class="brand-card" data-brand="Up Baby">
-                        <div class="aspect-square w-full"><img src="images/upbaby.jpg" alt="Marca Up Baby" class="w-full h-full object-cover"></div>
+                        <div class="aspect-square w-full"><img src="https://placehold.co/500x500/eeeeee/333333?text=Up+Baby" alt="Marca Up Baby" class="w-full h-full object-cover"></div>
                         <div class="p-4 flex-grow flex flex-col"><h4 class="brand-name">Up Baby</h4><p class="brand-desc">Acompañando generaciones desde la maternidad. Prendas con estilo, confort y calidad para niños y bebés, de prematuro a 12 años.</p></div>
                     </div>
                     <div class="brand-card" data-brand="Quimby">
-                        <div class="aspect-square w-full"><img src="images/quimby.jpg" alt="Marca Quimby" class="w-full h-full object-cover"></div>
+                        <div class="aspect-square w-full"><img src="https://placehold.co/500x500/eeeeee/333333?text=Quimby" alt="Marca Quimby" class="w-full h-full object-cover"></div>
                         <div class="p-4 flex-grow flex flex-col"><h4 class="brand-name">Quimby</h4><p class="brand-desc">Ropa cómoda y práctica para el día a día de niños y niñas. Fomenta el mundo lúdico de la infancia, de 0 a 14 años.</p></div>
                     </div>
                     <div class="brand-card" data-brand="Bee Loop">
-                        <div class="aspect-square w-full"><img src="images/beeloop.jpg" alt="Marca Bee Loop" class="w-full h-full object-cover"></div>
+                        <div class="aspect-square w-full"><img src="https://placehold.co/500x500/eeeeee/333333?text=Bee+Loop" alt="Marca Bee Loop" class="w-full h-full object-cover"></div>
                         <div class="p-4 flex-grow flex flex-col"><h4 class="brand-name">Bee Loop</h4><p class="brand-desc">Moda infantil y juvenil cómoda y práctica. Permite a los niños explorar y jugar de forma libre, de 0 a 14 años.</p></div>
                     </div>
                 </div>
@@ -251,15 +268,15 @@
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
                      <div class="brand-card" data-brand="Lilimoon">
-                        <div class="aspect-square w-full"><img src="images/lilimoon.jpeg" alt="Marca Lilimoon" class="w-full h-full object-cover"></div>
+                        <div class="aspect-square w-full"><img src="https://placehold.co/500x500/eeeeee/333333?text=Lilimoon" alt="Marca Lilimoon" class="w-full h-full object-cover"></div>
                         <div class="p-4 flex-grow flex flex-col"><h4 class="brand-name">Lilimoon</h4><p class="brand-desc">Para niñas modernas y soñadoras. Colecciones versátiles y estilosas que van del tamaño 8 al 18 para expresar su personalidad.</p></div>
                      </div>
                      <div class="brand-card" data-brand="Vick & Vicky">
-                        <div class="aspect-square w-full"><img src="images/vic&vicky.jpeg" alt="Marca Vick & Vicky" class="w-full h-full object-cover"></div>
+                        <div class="aspect-square w-full"><img src="https://placehold.co/500x500/eeeeee/333333?text=Vick+&+Vicky" alt="Marca Vick & Vicky" class="w-full h-full object-cover"></div>
                         <div class="p-4 flex-grow flex flex-col"><h4 class="brand-name">Vick & Vicky</h4><p class="brand-desc">Moda juvenil para niñas exigentes. Prendas sofisticadas con detalles modernos y urbanos, tallas del 8 al 20.</p></div>
                      </div>
                      <div class="brand-card" data-brand="Johnny Fox">
-                        <div class="aspect-square w-full"><img src="images/johnny fox.jpeg" alt="Marca Johnny Fox" class="w-full h-full object-cover"></div>
+                        <div class="aspect-square w-full"><img src="https://placehold.co/500x500/eeeeee/333333?text=Johnny+Fox" alt="Marca Johnny Fox" class="w-full h-full object-cover"></div>
                         <div class="p-4 flex-grow flex flex-col"><h4 class="brand-name">Johnny Fox</h4><p class="brand-desc">Ropa y accesorios con estilo moderno y práctico. Inspirada en el universo urbano, combina confort y durabilidad.</p></div>
                      </div>
                 </div>
@@ -269,19 +286,19 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
                     <div class="brand-card" data-brand="Vida Marinha">
-                        <div class="aspect-square w-full"><img src="images/VIDA MARINHA.jpeg" alt="Marca Vida Marinha" class="w-full h-full object-cover"></div>
+                        <div class="aspect-square w-full p-4"><img src="https://placehold.co/500x500/eeeeee/333333?text=Vida+Marinha" alt="Marca Vida Marinha" class="w-full h-full object-contain"></div>
                         <div class="p-4 flex-grow flex flex-col"><h4 class="brand-name">Vida Marinha</h4><p class="brand-desc">Fusión de surfwear y moda familiar, ofreciendo prendas cómodas y modernas para todas las edades, con un fuerte compromiso con la sostenibilidad.</p></div>
                     </div>
                     <div class="brand-card" data-brand="2Rios Lenceria">
-                        <div class="aspect-square w-full"><img src="images/2 RIOS.jpeg" alt="Marca 2 Rios Lenceria" class="w-full h-full object-cover"></div>
+                        <div class="aspect-square w-full"><img src="https://placehold.co/500x500/eeeeee/333333?text=2Rios" alt="Marca 2 Rios Lenceria" class="w-full h-full object-cover"></div>
                         <div class="p-4 flex-grow flex flex-col"><h4 class="brand-name">2Rios Lenceria</h4><p class="brand-desc">Belleza, confort y sofisticación para la mujer moderna. Utiliza tejidos de alta tecnología para un ajuste perfecto y bienestar durante todo el día.</p></div>
                     </div>
                     <div class="brand-card" data-brand="Olho Fatal">
-                        <div class="aspect-square w-full"><img src="images/OLHO FATAL.jpeg" alt="Marca Olho Fatal" class="w-full h-full object-cover"></div>
+                        <div class="aspect-square w-full"><img src="https://placehold.co/500x500/eeeeee/333333?text=Olho+Fatal" alt="Marca Olho Fatal" class="w-full h-full object-cover"></div>
                         <div class="p-4 flex-grow flex flex-col"><h4 class="brand-name">Olho Fatal</h4><p class="brand-desc">Fusiona diseño moderno y calidad impecable para ofrecer prendas versátiles, llenas de actitud y que nunca pasan de moda.</p></div>
                     </div>
                     <div class="brand-card" data-brand="Estilo do Corpo">
-                        <div class="aspect-square w-full"><img src="images/ESTILO DO CORPO.jpeg" alt="Marca Estilo do Corpo" class="w-full h-full object-cover"></div>
+                        <div class="aspect-square w-full"><img src="https://placehold.co/500x500/eeeeee/333333?text=Estilo+do+Corpo" alt="Marca Estilo do Corpo" class="w-full h-full object-cover"></div>
                         <div class="p-4 flex-grow flex flex-col"><h4 class="brand-name">Estilo do Corpo</h4><p class="brand-desc">Descripción de la marca Estilo do Corpo próximamente.</p></div>
                     </div>
                 </div>
@@ -291,11 +308,11 @@
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="brand-card" data-brand="Baby Gut">
-                        <div class="aspect-square w-full"><img src="images/Babygut.jpeg" alt="Marca Baby Gut" class="w-full h-full object-cover"></div>
+                        <div class="aspect-square w-full"><img src="https://placehold.co/500x500/eeeeee/333333?text=Baby+Gut" alt="Marca Baby Gut" class="w-full h-full object-cover"></div>
                         <div class="p-4 flex-grow flex flex-col"><h4 class="brand-name">Baby Gut</h4><p class="brand-desc">Calzado infantil con foco en comodidad y estilo. Materiales suaves y resistentes para acompañar los primeros pasos.</p></div>
                     </div>
                     <div class="brand-card" data-brand="Klin">
-                        <div class="aspect-square w-full p-4"><img src="images/KLIN_Espanhol.jpg" alt="Marca Klin" class="w-full h-full object-contain"></div>
+                        <div class="aspect-square w-full p-4"><img src="https://placehold.co/500x500/ffffff/333333?text=Klin" alt="Marca Klin" class="w-full h-full object-contain"></div>
                         <div class="p-4 flex-grow flex flex-col"><h4 class="brand-name">Klin</h4><p class="brand-desc">Más de 40 años creando calzados infantiles anatómicos. Sello "Caminar Saludable" que combina confort, diseño y calidad.</p></div>
                     </div>
                 </div>
@@ -335,7 +352,7 @@
                         <p class="text-gray-600 font-semibold italic">— Marco Boero, CEO Érase Una Vez</p>
                     </div>
                     <div>
-                        <img src="images/nuestrahistoria.jpeg" alt="Familia fundadora de Érase Una Vez" class="rounded-lg shadow-xl w-full h-full object-cover">
+                        <img src="https://placehold.co/600x500/eeeeee/333333?text=Nuestra+Historia" alt="Familia fundadora de Érase Una Vez" class="rounded-lg shadow-xl w-full h-full object-cover">
                     </div>
                 </div>
             </div>
@@ -348,26 +365,30 @@
                 <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
                     <!-- News Item 1 -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
-                        <img src="images/fotoequipofather.png" alt="Equipo de Father & Company con Érase una Vez" class="w-full h-48 object-cover object-top">
+                        <img src="https://placehold.co/600x600/eeeeee/333333?text=Noticia+1" alt="Equipo de Father & Company con Érase una Vez" class="w-full h-96 object-cover object-top">
                         <div class="p-6 flex-grow flex flex-col">
-                            <p class="text-gray-600 leading-relaxed mb-4 text-sm">
-                                Es un honor para Father&Company recibir en Brasil Erase una Vez que es tan estratégico para el desarrollo de nuestras marcas en Chile. Su visita marcó el inicio de una etapa llena de oportunidades, donde creemos firmemente en el poder de las alianzas entre países latinoamericanos para construir juntos un futuro de éxito.
-                                <br><br>
-                                Creemos que la colaboración entre Father y Erase una Vez va mucho más allá de los negocios: es un puente cultural y comercial donde se comparten sueños, creatividad y prosperidad. Nuestro mayor deseo es que esta relación se fortalezca día tras día, consolidando la presencia de marcas brasileñas en Chile con productos de excelencia, y creando beneficios mutuos para nuestras comunidades y economías.
-                            </p>
-                            <p class="text-gray-800 font-semibold italic text-right mt-auto">— ANA CAROLINA STRUBE</p>
+                            <div class="h-48 overflow-y-auto news-scrollbar pr-2">
+                                <p class="text-gray-600 leading-relaxed mb-4 text-sm">
+                                    Es un honor para Father&Company recibir en Brasil Erase una Vez que es tan estratégico para el desarrollo de nuestras marcas en Chile. Su visita marcó el inicio de una etapa llena de oportunidades, donde creemos firmemente en el poder de las alianzas entre países latinoamericanos para construir juntos un futuro de éxito.
+                                    <br><br>
+                                    Creemos que la colaboración entre Father y Erase una Vez va mucho más allá de los negocios: es un puente cultural y comercial donde se comparten sueños, creatividad y prosperidad. Nuestro mayor deseo es que esta relación se fortalezca día tras día, consolidando la presencia de marcas brasileñas en Chile con productos de excelencia, y creando beneficios mutuos para nuestras comunidades y economías.
+                                </p>
+                            </div>
+                            <p class="text-gray-800 font-semibold italic text-right mt-auto pt-4">— ANA CAROLINA STRUBE</p>
                         </div>
                     </div>
                     <!-- News Item 2 -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
-                        <img src="images/FOTO LEANDRO TEXPA.jpeg" alt="Leandro Camargo, Gerente de Exportación de Grupo Texpa" class="w-full h-48 object-cover">
+                        <img src="https://placehold.co/600x600/eeeeee/333333?text=Noticia+2" alt="Leandro Camargo, Gerente de Exportación de Grupo Texpa" class="w-full h-96 object-cover">
                         <div class="p-6 flex-grow flex flex-col">
-                             <p class="text-gray-600 leading-relaxed mb-4 text-sm">
-                                Chile es, sin duda, un país estratégico para nuestro negocio, no solo por su proximidad logística, sino también porque nuestros productos satisfacen las expectativas de los clientes en cuanto a diseño, ajuste, calidad y aplicación de las tendencias de moda.
-                                <br><br>
-                                En este contexto, hemos mantenido una exitosa colaboración con "Erase una Vez" durante varios años. Somos optimistas no solo sobre el presente, sino también sobre el próspero futuro que nos espera.
-                            </p>
-                            <p class="text-gray-800 font-semibold italic text-right mt-auto">— Leandro Camargo, Gerente de Exportación, Grupo Texpa</p>
+                             <div class="h-48 overflow-y-auto news-scrollbar pr-2">
+                                <p class="text-gray-600 leading-relaxed mb-4 text-sm">
+                                    Chile es, sin duda, un país estratégico para nuestro negocio, no solo por su proximidad logística, sino también porque nuestros productos satisfacen las expectativas de los clientes en cuanto a diseño, ajuste, calidad y aplicación de las tendencias de moda.
+                                    <br><br>
+                                    En este contexto, hemos mantenido una exitosa colaboración con "Erase una Vez" durante varios años. Somos optimistas no solo sobre el presente, sino también sobre el próspero futuro que nos espera.
+                                </p>
+                             </div>
+                            <p class="text-gray-800 font-semibold italic text-right mt-auto pt-4">— Leandro Camargo, Gerente de Exportación, Grupo Texpa</p>
                         </div>
                     </div>
                 </div>
@@ -378,10 +399,18 @@
         <section id="testimonios" class="py-20 md:py-28 bg-white overflow-hidden">
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-center text-[#005f73] mb-12">Qué Dicen Nuestros Clientes</h2>
-                <div id="testimonial-scroller-container" class="relative w-full" style="mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);">
-                    <div class="flex scroller hover:[animation-play-state:paused]">
-                        <!-- Testimonial Cards are inserted here by JS -->
+                <div id="testimonial-container" class="relative">
+                    <div class="overflow-hidden">
+                        <div id="testimonial-scroller" class="flex">
+                            <!-- Testimonial Cards are inserted here by JS -->
+                        </div>
                     </div>
+                    <button id="prev-testimonial" class="absolute left-0 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white rounded-full p-2 transition-colors z-10 -ml-4 md:ml-0">
+                        <i data-lucide="chevron-left" class="h-6 w-6 text-gray-700"></i>
+                    </button>
+                    <button id="next-testimonial" class="absolute right-0 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white rounded-full p-2 transition-colors z-10 -mr-4 md:mr-0">
+                        <i data-lucide="chevron-right" class="h-6 w-6 text-gray-700"></i>
+                    </button>
                 </div>
             </div>
         </section>
@@ -420,7 +449,7 @@
         <div class="container mx-auto px-6 py-12">
             <div class="grid md:grid-cols-3 gap-8 text-center md:text-left">
                 <div>
-                    <img src="images/Erase una vez - Logo.png" alt="Logo Érase Una Vez" class="h-16 mx-auto md:mx-0 mb-4">
+                    <img src="https://placehold.co/192x64/001219/ffffff?text=Érase+Una+Vez" alt="Logo Érase Una Vez" class="h-16 mx-auto md:mx-0 mb-4" onerror="this.onerror=null;this.src='https://placehold.co/192x64/001219/ffffff?text=Logo+Error';">
                     <p class="text-sm text-gray-400">Distribuidor Exclusivo de Marcas Brasileñas en Chile</p>
                 </div>
                 <div>
@@ -442,11 +471,11 @@
                          <li class="flex items-center justify-center md:justify-start gap-2">
                             <i data-lucide="instagram" class="h-4 w-4"></i>
                             <a href="https://instagram.com/eraseunavezcl" target="_blank" class="text-gray-300 hover:text-white">@eraseunavezcl</a>
-                        </li>
+                         </li>
                          <li class="flex items-center justify-center md:justify-start gap-2">
                             <i data-lucide="mail" class="h-4 w-4"></i>
                             <a href="mailto:contacto@eraseunavez.cl" class="text-gray-300 hover:text-white">contacto@eraseunavez.cl</a>
-                        </li>
+                         </li>
                     </ul>
                 </div>
             </div>
@@ -477,21 +506,23 @@
         ];
 
         const faqContainer = document.getElementById('faq-accordion');
-        faqData.forEach((item, index) => {
-            const faqItem = document.createElement('div');
-            faqItem.className = 'faq-item border border-gray-200 rounded-lg overflow-hidden';
-            
-            faqItem.innerHTML = `
-                <button class="faq-question w-full flex justify-between items-center text-left p-5 font-semibold text-gray-700 hover:bg-gray-50" aria-expanded="false" aria-controls="faq-answer-${index}">
-                    <span>${item.q}</span>
-                    <i data-lucide="chevron-down" class="transition-transform duration-300"></i>
-                </button>
-                <div id="faq-answer-${index}" class="faq-answer px-5 text-gray-600" role="region">
-                    <p class="py-4">${item.a}</p>
-                </div>
-            `;
-            faqContainer.appendChild(faqItem);
-        });
+        if (faqContainer) {
+            faqData.forEach((item, index) => {
+                const faqItem = document.createElement('div');
+                faqItem.className = 'faq-item border border-gray-200 rounded-lg overflow-hidden';
+                
+                faqItem.innerHTML = `
+                    <button class="faq-question w-full flex justify-between items-center text-left p-5 font-semibold text-gray-700 hover:bg-gray-50" aria-expanded="false" aria-controls="faq-answer-${index}">
+                        <span>${item.q}</span>
+                        <i data-lucide="chevron-down" class="transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-${index}" class="faq-answer px-5 text-gray-600" role="region">
+                        <p class="py-4">${item.a}</p>
+                    </div>
+                `;
+                faqContainer.appendChild(faqItem);
+            });
+        }
 
         // Initialize Lucide Icons
         lucide.createIcons();
@@ -499,16 +530,18 @@
         // Mobile Menu Toggle
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        menuBtn.addEventListener('click', () => {
-            const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
-            menuBtn.setAttribute('aria-expanded', !isExpanded);
-            mobileMenu.classList.toggle('hidden');
-        });
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
+                menuBtn.setAttribute('aria-expanded', !isExpanded);
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
 
         document.querySelectorAll('#mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                menuBtn.setAttribute('aria-expanded', 'false');
+                if (mobileMenu) mobileMenu.classList.add('hidden');
+                if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
             });
         });
 
@@ -525,30 +558,13 @@
             }, 5000);
         }
 
-        // Rotating Text in Hero
-        const rotatingTextContainer = document.getElementById('rotating-text-container');
-        const rotatingTexts = ["Moda Infantil", "Estilo Juvenil", "Calzado de Calidad", "Tendencia Adultos"];
-        let currentTextIndex = 0;
-
-        if (rotatingTextContainer) {
-            rotatingTextContainer.textContent = rotatingTexts[0];
-            setInterval(() => {
-                rotatingTextContainer.classList.add('opacity-0');
-                setTimeout(() => {
-                    currentTextIndex = (currentTextIndex + 1) % rotatingTexts.length;
-                    rotatingTextContainer.textContent = rotatingTexts[currentTextIndex];
-                    rotatingTextContainer.classList.remove('opacity-0');
-                }, 500);
-            }, 5000);
-        }
-
         // Brand Card WhatsApp Link
         const brandCards = document.querySelectorAll('.brand-card');
         const phoneNumber = '56941129901';
         brandCards.forEach(card => {
             card.addEventListener('click', () => {
                 const brandName = card.dataset.brand;
-                const message = encodeURIComponent(`Hola! Me interesó comprar de la línea ${brandName}`);
+                const message = encodeURIComponent(`Hola, me interesa recibir más información sobre la línea ${brandName}`);
                 const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
                 window.open(whatsappUrl, '_blank');
             });
@@ -560,112 +576,116 @@
             const questionBtn = item.querySelector('.faq-question');
             const answerPanel = item.querySelector('.faq-answer');
 
-            questionBtn.addEventListener('click', () => {
-                const isOpening = questionBtn.getAttribute('aria-expanded') === 'false';
-                
-                // Close all other items
-                faqItems.forEach(otherItem => {
-                    const otherBtn = otherItem.querySelector('.faq-question');
-                    const otherPanel = otherItem.querySelector('.faq-answer');
-                    const otherIcon = otherBtn.querySelector('svg');
+            if (questionBtn && answerPanel) {
+                questionBtn.addEventListener('click', () => {
+                    const isOpening = questionBtn.getAttribute('aria-expanded') === 'false';
                     
-                    if (otherItem !== item) {
-                        otherBtn.setAttribute('aria-expanded', 'false');
-                        otherPanel.style.maxHeight = null;
-                        if(otherIcon) otherIcon.classList.remove('rotate-180');
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            const otherBtn = otherItem.querySelector('.faq-question');
+                            const otherPanel = otherItem.querySelector('.faq-answer');
+                            const otherIcon = otherBtn.querySelector('svg');
+                            
+                            otherBtn.setAttribute('aria-expanded', 'false');
+                            otherPanel.style.maxHeight = null;
+                            if(otherIcon) otherIcon.classList.remove('rotate-180');
+                        }
+                    });
+
+                    if (isOpening) {
+                        questionBtn.setAttribute('aria-expanded', 'true');
+                        answerPanel.style.maxHeight = answerPanel.scrollHeight + 'px';
+                        questionBtn.querySelector('svg').classList.add('rotate-180');
+                    } else {
+                        questionBtn.setAttribute('aria-expanded', 'false');
+                        answerPanel.style.maxHeight = null;
+                        questionBtn.querySelector('svg').classList.remove('rotate-180');
                     }
                 });
-
-                // Toggle the clicked item
-                if (isOpening) {
-                    questionBtn.setAttribute('aria-expanded', 'true');
-                    answerPanel.style.maxHeight = answerPanel.scrollHeight + 'px';
-                    questionBtn.querySelector('svg').classList.add('rotate-180');
-                } else {
-                    questionBtn.setAttribute('aria-expanded', 'false');
-                    answerPanel.style.maxHeight = null;
-                    questionBtn.querySelector('svg').classList.remove('rotate-180');
-                }
-            });
-        });
-
-        // Read More Button for News
-        document.querySelectorAll('.read-more-btn').forEach(button => {
-            button.addEventListener('click', event => {
-                const contentWrapper = event.target.previousElementSibling;
-                const hiddenSpan = contentWrapper.querySelector('span');
-                
-                const isExpanded = contentWrapper.classList.contains('expanded');
-
-                if (isExpanded) {
-                    contentWrapper.classList.remove('expanded');
-                    hiddenSpan.classList.add('hidden');
-                    event.target.textContent = 'Leer más...';
-                } else {
-                    contentWrapper.classList.add('expanded');
-                    hiddenSpan.classList.remove('hidden');
-                    event.target.textContent = 'Leer menos';
-                }
-            });
+            }
         });
         
-        // Testimonial Scroller
-        const scroller = document.querySelector("#testimonial-scroller-container .scroller");
+        // Testimonial Scroller Logic
+        const scroller = document.getElementById("testimonial-scroller");
+        const prevBtn = document.getElementById("prev-testimonial");
+        const nextBtn = document.getElementById("next-testimonial");
+        const scrollerContainer = document.getElementById("testimonial-container");
+
         const testimonials = [
-            {
-                quote: "Desde que abrí mi boutique hace cuatro años, he confiado en Érase Una Vez. Su ropa es de una calidad insuperable y realmente marca la diferencia en mi stock. Mis clientas siempre elogian los diseños exclusivos que no encuentran en ningún otro lugar. Es la razón principal por la que siguen volviendo. ¡Gracias por ser un socio tan confiable!",
-                name: "Daniela O.",
-                location: "Pucón"
-            },
-            {
-                quote: "Cuando comencé con mi tienda online, me sentía un poco perdida con tantas opciones. El equipo de Érase Una Vez fue un apoyo increíble desde el minuto uno. Me brindaron un asesoramiento excepcional, ayudándome a encontrar las marcas brasileñas perfectas para mi público. Su guía fue fundamental para que mi negocio despegara con la selección adecuada. ¡Un servicio realmente integral!",
-                name: "Carolina M.",
-                location: "Valparaíso"
-            },
-            {
-                quote: "Trabajar con Érase Una Vez ha sido un acierto para mi negocio. Los márgenes de ganancia que obtengo con sus productos son excelentes, lo que me permite crecer de manera sostenible. Además, la exclusividad de sus marcas brasileñas me da una ventaja competitiva enorme. Mis clientes valoran mucho tener acceso a prendas únicas y de calidad.",
-                name: "Ricardo P.",
-                location: "Concepción"
-            },
-            {
-                quote: "Como madre y dueña de una tienda de ropa infantil, sé lo difícil que es encontrar prendas que resistan el ritmo de los niños. La ropa de Érase Una Vez es de muy alta calidad, increíblemente duradera. Mis clientas en el sur de Chile valoran muchísimo que, a pesar de que los niños son inquietos y la ropa pasa constantemente por la secadora, las prendas se mantienen perfectas. ¡Es una inversión que vale la pena!",
-                name: "Sofía R.",
-                location: "Talagante"
-            },
-            {
-                quote: "Estoy realmente impresionada con las colecciones de ropa adulta y deportiva que trae Érase Una Vez. Los diseños son modernos y vanguardistas, y el calce de las prendas es simplemente perfecto, realzando la figura y ofreciendo comodidad. Mis clientas están encantadas con la calidad y cómo les queda la ropa, lo que se traduce en ventas recurrentes y clientas felices.",
-                name: "Andrea G.",
-                location: "La Serena"
-            }
+            { quote: "Desde que abrí mi boutique hace cuatro años, he confiado en Érase Una Vez. Su ropa es de una calidad insuperable y realmente marca la diferencia en mi stock. Mis clientas siempre elogian los diseños exclusivos que no encuentran en ningún otro lugar. Es la razón principal por la que siguen volviendo. ¡Gracias por ser un socio tan confiable!", name: "Daniela O.", location: "Pucón" },
+            { quote: "Cuando comencé con mi tienda online, me sentía un poco perdida con tantas opciones. El equipo de Érase Una Vez fue un apoyo increíble desde el minuto uno. Me brindaron un asesoramiento excepcional, ayudándome a encontrar las marcas brasileñas perfectas para mi público. Su guía fue fundamental para que mi negocio despegara con la selección adecuada. ¡Un servicio realmente integral!", name: "Carolina M.", location: "Valparaíso" },
+            { quote: "Trabajar con Érase Una Vez ha sido un acierto para mi negocio. Los márgenes de ganancia que obtengo con sus productos son excelentes, lo que me permite crecer de manera sostenible. Además, la exclusividad de sus marcas brasileñas me da una ventaja competitiva enorme. Mis clientes valoran mucho tener acceso a prendas únicas y de calidad.", name: "Ricardo P.", location: "Concepción" },
+            { quote: "Como madre y dueña de una tienda de ropa infantil, sé lo difícil que es encontrar prendas que resistan el ritmo de los niños. La ropa de Érase Una Vez es de muy alta calidad, increíblemente duradera. Mis clientas en el sur de Chile valoran muchísimo que, a pesar de que los niños son inquietos y la ropa pasa constantemente por la secadora, las prendas se mantienen perfectas. ¡Es una inversión que vale la pena!", name: "Sofía R.", location: "Talagante" },
+            { quote: "Estoy realmente impresionada con las colecciones de ropa adulta y deportiva que trae Érase Una Vez. Los diseños son modernos y vanguardistas, y el calce de las prendas es simplemente perfecto, realzando la figura y ofreciendo comodidad. Mis clientas están encantadas con la calidad y cómo les queda la ropa, lo que se traduce en ventas recurrentes y clientas felices.", name: "Andrea G.", location: "La Serena" }
         ];
 
-        const allTestimonials = [...testimonials, ...testimonials]; // Duplicate for infinite scroll effect
+        let testimonialScrollInterval;
 
-        allTestimonials.forEach(testimonial => {
-            const testimonialEl = document.createElement('div');
-            testimonialEl.className = 'flex-shrink-0 w-full md:w-1/2 lg:w-1/3 p-4';
-            testimonialEl.innerHTML = `
-                <div class="bg-white p-6 rounded-lg shadow-md h-full flex flex-col justify-center">
-                    <i data-lucide="quote" class="mx-auto text-[#94d2bd] h-8 w-8 mb-4"></i>
-                    <p class="text-gray-600 italic leading-relaxed mb-4 text-sm">"${testimonial.quote}"</p>
-                    <p class="font-bold text-gray-800 uppercase tracking-wider text-xs">${testimonial.name}</p>
-                    <p class="text-xs text-gray-500">${testimonial.location}</p>
-                </div>
-            `;
-            scroller.appendChild(testimonialEl);
-        });
+        if (scroller) {
+            const allTestimonials = [...testimonials, ...testimonials]; // Duplicate for seamless loop
+            scroller.innerHTML = '';
+            allTestimonials.forEach(testimonial => {
+                const testimonialEl = document.createElement('div');
+                testimonialEl.className = 'flex-shrink-0 w-full md:w-1/2 lg:w-1/3 p-4';
+                testimonialEl.innerHTML = `
+                    <div class="bg-white p-6 rounded-lg shadow-md h-full flex flex-col justify-center">
+                        <i data-lucide="quote" class="mx-auto text-[#94d2bd] h-8 w-8 mb-4"></i>
+                        <p class="text-gray-600 italic leading-relaxed mb-4 text-sm">"${testimonial.quote}"</p>
+                        <p class="font-bold text-gray-800 uppercase tracking-wider text-xs">${testimonial.name}</p>
+                        <p class="text-xs text-gray-500">${testimonial.location}</p>
+                    </div>
+                `;
+                scroller.appendChild(testimonialEl);
+            });
+            lucide.createIcons();
+        }
+
+        function startAutoScroll() {
+            stopAutoScroll(); // Clear any existing interval
+            testimonialScrollInterval = setInterval(() => {
+                if (scroller.scrollLeft >= (scroller.scrollWidth / 2)) {
+                    scroller.scrollLeft = 0;
+                } else {
+                    scroller.scrollLeft += 1;
+                }
+            }, 30);
+        }
+
+        function stopAutoScroll() {
+            clearInterval(testimonialScrollInterval);
+        }
+        
+        if (scrollerContainer && prevBtn && nextBtn && scroller) {
+            startAutoScroll();
+            scrollerContainer.addEventListener('mouseenter', stopAutoScroll);
+            scrollerContainer.addEventListener('mouseleave', startAutoScroll);
+
+            nextBtn.addEventListener("click", () => {
+                const cardWidth = scroller.querySelector('div').clientWidth;
+                scroller.scrollBy({ left: cardWidth, behavior: 'smooth' });
+            });
+
+            prevBtn.addEventListener("click", () => {
+                const cardWidth = scroller.querySelector('div').clientWidth;
+                scroller.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+            });
+        }
+
 
         // Adjust header padding on scroll
         const header = document.getElementById('header');
-        window.onscroll = function() {
-            if (window.scrollY > 50) {
-                header.classList.add('py-2');
-                header.classList.remove('py-2');
-            } else {
-                header.classList.add('py-3');
-                header.classList.remove('py-2');
-            }
-        };
+        if (header) {
+            const nav = header.querySelector('nav');
+            window.onscroll = function() {
+                if (window.scrollY > 50) {
+                    nav.classList.add('py-2');
+                    nav.classList.remove('py-3');
+                } else {
+                    nav.classList.add('py-3');
+                    nav.classList.remove('py-2');
+                }
+            };
+        }
     });
     </script>
 </body>
